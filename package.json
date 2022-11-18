@@ -1,0 +1,46 @@
+{
+	"name": "blog_admin",
+	"private": true,
+	"version": "0.0.0",
+	"type": "commonjs",
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc && vite build",
+		"preview": "vite preview",
+		"lint": "eslint ./src/**/*.{vue,ts} --fix",
+		"prettier": "prettier --write .",
+		"prepare": "husky install",
+		"preCommit": "lint-staged",
+		"commit": "cz"
+	},
+	"dependencies": {
+		"element-plus": "^2.2.21",
+		"vue": "^3.2.41"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^17.2.0",
+		"@commitlint/config-conventional": "^17.2.0",
+		"@typescript-eslint/eslint-plugin": "^5.43.0",
+		"@typescript-eslint/parser": "^5.43.0",
+		"@vitejs/plugin-vue": "^3.2.0",
+		"@vue/cli-plugin-eslint": "^5.0.8",
+		"commitizen": "^4.2.5",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^8.27.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-vue": "^9.7.0",
+		"husky": "^8.0.2",
+		"lint-staged": "^13.0.3",
+		"prettier": "^2.7.1",
+		"typescript": "^4.9.3",
+		"unplugin-auto-import": "^0.11.4",
+		"unplugin-vue-components": "^0.22.9",
+		"vite": "^3.2.3",
+		"vue-tsc": "^1.0.9"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
+}
