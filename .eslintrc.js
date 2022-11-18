@@ -26,6 +26,9 @@ module.exports = {
 				}
 			}
 		],
-		'@typescript-eslint/no-explicit-any': 0
+		'@typescript-eslint/no-explicit-any': 0,
+		'vue/max-attributes-per-line': 0,
+		'vue/html-indent': 0,
+		'vue/singleline-html-element-content-newline': 0
 	}
 }
