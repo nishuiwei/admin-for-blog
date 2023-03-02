@@ -1,36 +1,17 @@
-/* :root {
-	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	line-height: 24px;
-	font-weight: 400;
-
-	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
-} */
-
-/* @media (prefers-color-scheme: dark) {
+html,
+body,
+#app {
+	height: 100%;
 }
 
-@media (prefers-color-scheme: light) {
-}*/
 :root {
 	color-scheme: light;
-	--background-color: #fff;
-	--color: #242424;
+	--background-color: rgba(219, 231, 238, 100);
+	--header-background-color: rgba(255, 255, 255, 100);
 }
 
 :root.dark {
 	color-scheme: dark;
-	--background-color: #242424;
-	--color: #fff;
-}
-
-html {
-	background-color: var(--background-color);
+	--background-color: rgba(22, 29, 38, 100);
+	--header-background-color: rgba(31, 41, 53, 100);
 }
