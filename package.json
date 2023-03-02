@@ -15,8 +15,8 @@
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.0.10",
-		"element-plus": "^2.2.21",
-		"pinia": "^2.0.24",
+		"element-plus": "^2.2.32",
+		"pinia": "^2.0.32",
 		"vue": "^3.2.41",
 		"vue-router": "^4.1.6"
 	},
