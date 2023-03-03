@@ -1,7 +1,8 @@
 <template>
 	<el-container class="default-layout">
 		<el-aside>
-			<div class="logo">el-aside</div>
+			<div class="logo">Hi - Blog</div>
+			<hj-menu />
 		</el-aside>
 		<el-container class="right">
 			<el-header>
@@ -22,6 +23,7 @@
 <script setup lang="ts">
 import { useTheme } from '../composables'
 import { Icon } from '../components/icon'
+
 const { isDark, toggleDark } = useTheme
 
 const icon_item = ['Edit']
@@ -36,6 +38,7 @@ const icon_item = ['Edit']
 		width: 240px;
 		background: linear-gradient(180deg, #1f2935 0%, #425365 100%);
 		border-right: 1px solid #8291a9;
+		color: #fff;
 		.logo {
 			display: flex;
 			align-items: center;

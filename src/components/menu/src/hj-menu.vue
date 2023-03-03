@@ -1,0 +1,68 @@
+<template>
+	<el-menu
+		default-active="4"
+		:collapse="isCollapse"
+		background-color="transparent"
+		text-color="#fff"
+		unique-opened
+		@open="handleOpen"
+		@close="handleClose"
+	>
+		<hj-menu-item :menu="menuWrapper" />
+	</el-menu>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const isCollapse = ref<boolean>(false)
+
+const handleOpen = (key: string, keyPath: string[]) => {
+	console.log(key, keyPath)
+}
+
+const handleClose = (key: string, keyPath: string[]) => {
+	console.log(key, keyPath)
+}
+
+const menuWrapper = ref([
+	{
+		index: '1',
+		title: '菜单1',
+		icon: 'Menu',
+		children: []
+	},
+	{
+		index: '2',
+		title: '菜单2',
+		icon: 'Menu',
+		children: [
+			{
+				index: '2-1',
+				title: '菜单2-1',
+				icon: 'Menu',
+				children: []
+			}
+		]
+	},
+	{
+		index: '3',
+		title: '菜单3',
+		icon: 'Menu',
+		children: []
+	},
+	{
+		index: '4',
+		title: '菜单4',
+		icon: 'Menu',
+		children: []
+	}
+])
+</script>
+
+<style scoped lang="less">
+.el-menu {
+	border-right: none;
+	font-size: 14px;
+	font-weight: 400;
+}
+</style>
