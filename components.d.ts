@@ -8,15 +8,23 @@ export {}
 declare module '@vue/runtime-core' {
 	export interface GlobalComponents {
 		ElAside: typeof import('element-plus/es')['ElAside']
+		ElAvatar: typeof import('element-plus/es')['ElAvatar']
+		ElBadge: typeof import('element-plus/es')['ElBadge']
 		ElContainer: typeof import('element-plus/es')['ElContainer']
+		ElDropdown: typeof import('element-plus/es')['ElDropdown']
+		ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+		ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
 		ElFooter: typeof import('element-plus/es')['ElFooter']
 		ElHeader: typeof import('element-plus/es')['ElHeader']
 		ElIcon: typeof import('element-plus/es')['ElIcon']
+		ElImage: typeof import('element-plus/es')['ElImage']
 		ElMain: typeof import('element-plus/es')['ElMain']
 		ElMenu: typeof import('element-plus/es')['ElMenu']
 		ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
 		ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
 		ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+		ElSwitch: typeof import('element-plus/es')['ElSwitch']
+		HjHeader: typeof import('./src/components/header/src/hj-header.vue')['default']
 		HjMenu: typeof import('./src/components/menu/src/hj-menu.vue')['default']
 		HjMenuItem: typeof import('./src/components/menu/src/hj-menu-item.vue')['default']
 		Icon: typeof import('./src/components/icon/src/icon.vue')['default']
@@ -28,5 +36,6 @@ declare module '@vue/runtime-core' {
 		RouterLink: typeof import('vue-router')['RouterLink']
 		RouterView: typeof import('vue-router')['RouterView']
 		Src: typeof import('./src/components/menu/src/index.vue')['default']
+		SunnyIcon: typeof import('./src/components/icon/src/Sunny-icon.vue')['default']
 	}
 }

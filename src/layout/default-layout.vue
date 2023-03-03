@@ -6,12 +6,7 @@
 		</el-aside>
 		<el-container class="right">
 			<el-header>
-				<div @click="toggleDark()">
-					{{ isDark ? 'light' : 'dark' }}
-				</div>
-				<template v-for="item in icon_item" :key="item">
-					<el-icon :size="20" color="#000"> <Icon :icon="item" /> </el-icon>
-				</template>
+				<hj-header />
 			</el-header>
 			<el-main>
 				<slot name="main" />
@@ -20,14 +15,7 @@
 	</el-container>
 </template>
 
-<script setup lang="ts">
-import { useTheme } from '../composables'
-import { Icon } from '../components/icon'
-
-const { isDark, toggleDark } = useTheme
-
-const icon_item = ['Edit']
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="less">
 @height: 80px;
@@ -35,6 +23,7 @@ const icon_item = ['Edit']
 	display: flex;
 	height: 100%;
 	.el-aside {
+		user-select: none;
 		width: 240px;
 		background: linear-gradient(180deg, #1f2935 0%, #425365 100%);
 		border-right: 1px solid #8291a9;
@@ -54,10 +43,12 @@ const icon_item = ['Edit']
 		.el-header {
 			background-color: var(--header-background-color);
 			height: @height;
+			transition: background 0.3s ease-in-out;
 		}
 		.el-main {
 			flex: 1;
 			background-color: var(--background-color);
+			transition: background 0.3s ease-in-out;
 		}
 	}
 }

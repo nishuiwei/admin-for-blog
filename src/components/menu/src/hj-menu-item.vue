@@ -11,7 +11,7 @@
 		<template v-else>
 			<el-sub-menu :index="item.index">
 				<template #title>
-					<el-icon :size="16" color="#0081FF">
+					<el-icon :size="16" color="#fff">
 						<Icon :icon="item.icon" />
 					</el-icon>
 					<span style="margin-left: 10px">{{ item.title }}</span>
@@ -38,10 +38,11 @@ defineProps<{
 	height: 60px;
 	padding-left: 40px !important;
 }
+
 .el-sub-menu {
 	background: transparent;
 	.el-menu-item {
-		color: #8291a9;
+		color: var(--submenu-color);
 		padding-left: 50px !important;
 		&.is-active {
 			color: #fff;
@@ -55,11 +56,11 @@ defineProps<{
 		}
 	}
 	&.is-opened.is-active {
-		background-color: #161d26;
+		background-color: var(--menu-active-bg-color);
 		color: #fff;
 		position: relative;
 		.el-icon {
-			color: #0081ff;
+			color: var(--menu-active-color);
 		}
 		&::before {
 			content: '';
@@ -69,28 +70,31 @@ defineProps<{
 			display: block;
 			width: 6px;
 			height: 100%;
-			background-color: #0081ff;
+			background-color: var(--menu-active-color);
 			border-radius: 0px 3px 3px 0px;
 		}
 	}
 }
-.el-menu-item.is-active {
-	background-color: #161d26;
-	color: #fff;
-	position: relative;
-	.el-icon {
-		color: #0081ff;
-	}
-	&::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 0;
-		display: block;
-		width: 6px;
-		height: 100%;
-		background-color: #0081ff;
-		border-radius: 0px 3px 3px 0px;
+
+.el-menu-item {
+	&.is-active {
+		background-color: var(--menu-active-bg-color);
+		color: #fff;
+		position: relative;
+		.el-icon {
+			color: var(--menu-active-color);
+		}
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: block;
+			width: 6px;
+			height: 100%;
+			background-color: var(--menu-active-color);
+			border-radius: 0px 3px 3px 0px;
+		}
 	}
 }
 </style>
