@@ -2,6 +2,8 @@ html,
 body,
 #app {
 	height: 100%;
+	font-family: 'Poppins';
+	font-weight: 400;
 }
 
 :root {
