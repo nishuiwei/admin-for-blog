@@ -14,7 +14,9 @@ body,
 	--text-color: rgba(130, 145, 169, 1);
 	--chat-bg-color: rgba(237, 244, 251, 1);
 	--menu-border-color: #8291a9;
+	--person-item-border-color: #dbe7ee;
 
+	--text-title-color: #242a38;
 	--submenu-color: #8291a9;
 	--menu-active-color: #0081ff;
 	--menu-active-bg-color: #161d26;
@@ -27,8 +29,10 @@ body,
 	--text-color: rgba(130, 145, 169, 1);
 	--chat-bg-color: #161d26;
 	--menu-border-color: #384352;
+	--text-title-color: #fff;
+	--person-item-border-color: #1f2935;
 }
 
 .bg-transition {
-	transition: background 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }

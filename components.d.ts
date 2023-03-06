@@ -33,6 +33,8 @@ declare module '@vue/runtime-core' {
 		IEpEdit: typeof import('~icons/ep/edit')['default']
 		Menu: typeof import('./src/components/hj-menu/src/menu.vue')['default']
 		MenuItem: typeof import('./src/components/menu/src/menu-item.vue')['default']
+		PersonItem: typeof import('./src/components/person/src/person-item.vue')['default']
+		PersonList: typeof import('./src/components/person/src/person-list.vue')['default']
 		RouterLink: typeof import('vue-router')['RouterLink']
 		RouterView: typeof import('vue-router')['RouterView']
 		Src: typeof import('./src/components/menu/src/index.vue')['default']

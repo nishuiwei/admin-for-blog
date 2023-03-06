@@ -2,9 +2,10 @@
 	<div class="chat">
 		<!-- 联系人列表 -->
 		<div class="chat-person-list bg-transition">
-			<ul>
-				<li>hello world</li>
-			</ul>
+			<!-- search -->
+			<div style="height: 60px" />
+			<!-- person-list -->
+			<person-list />
 		</div>
 		<!-- 聊天内容 -->
 		<div class="chat-content bg-transition">content</div>
