@@ -28,12 +28,12 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({
 	routes,
 	history: createWebHistory(),
-	scrollBehavior(to, from, savedPosition) {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve({ top: 0 })
-			}, 500)
-		})
+	scrollBehavior() {
+		return {
+			el: '#main',
+			top: 0,
+			behavior: 'smooth'
+		}
 	}
 })
 

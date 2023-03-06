@@ -10,7 +10,7 @@
 			<div class="header-user-setting">
 				<el-dropdown>
 					<span class="el-dropdown-link">
-						<el-badge is-dot class="item">
+						<el-badge is-dot class="item" type="success">
 							<el-avatar
 								shape="square"
 								:size="36"

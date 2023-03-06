@@ -8,7 +8,7 @@
 			<el-header>
 				<hj-header />
 			</el-header>
-			<el-main>
+			<el-main id="main">
 				<slot name="main" />
 			</el-main>
 		</el-container>
