@@ -5,6 +5,7 @@
 		background-color="transparent"
 		text-color="#fff"
 		unique-opened
+		router
 		@open="handleOpen"
 		@close="handleClose"
 	>
@@ -45,8 +46,8 @@ const menuWrapper = ref([
 		]
 	},
 	{
-		index: '3',
-		title: '菜单3',
+		index: '/main/chat',
+		title: 'Chat',
 		icon: 'Menu',
 		children: []
 	},
