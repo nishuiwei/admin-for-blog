@@ -1,5 +1,9 @@
 <template>
-	<div class="person bg-transition" :class="~~item === 2 ? 'active' : ''">
+	<div
+		class="person bg-transition"
+		:class="active ? 'active' : ''"
+		@click="handleClickItem"
+	>
 		<!-- 头像 -->
 		<div class="person-avatar">
 			<el-badge is-dot class="item" type="success">
@@ -19,14 +23,14 @@
 </template>
 
 <script lang="ts" setup>
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		active: boolean
 		avatar: string
 		name: string
 		message: string
 		time: string
-		item: string | number
+		index: number
 	}>(),
 	{
 		avatar:
@@ -36,6 +40,10 @@ withDefaults(
 		time: '9 min'
 	}
 )
+const emits = defineEmits(['clickItem'])
+const handleClickItem = (): void => {
+	emits('clickItem', props.index)
+}
 </script>
 
 <style scoped lang="less">
@@ -46,10 +54,16 @@ withDefaults(
 	justify-content: space-between;
 	border-top: 1px solid var(--person-item-border-color);
 	cursor: pointer;
-
+	&:hover {
+		background-color: var(--header-background-color);
+		opacity: 0.7;
+	}
 	&.active {
 		background-color: var(--header-background-color);
 		border-radius: 5px;
+		&:hover {
+			opacity: 1;
+		}
 	}
 
 	&-avatar {

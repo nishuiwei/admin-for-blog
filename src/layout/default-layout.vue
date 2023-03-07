@@ -47,7 +47,7 @@
 		.el-main {
 			flex: 1;
 			background-color: var(--background-color);
-			padding: 0;
+			padding: 2px 0 0 0;
 		}
 	}
 }

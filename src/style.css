@@ -15,8 +15,9 @@ body,
 	--chat-bg-color: rgba(237, 244, 251, 1);
 	--menu-border-color: #8291a9;
 	--person-item-border-color: #dbe7ee;
-
 	--text-title-color: #242a38;
+
+	--send-btn-bg: #0081ff;
 	--submenu-color: #8291a9;
 	--menu-active-color: #0081ff;
 	--menu-active-bg-color: #161d26;
