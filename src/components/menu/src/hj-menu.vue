@@ -1,6 +1,6 @@
 <template>
 	<el-menu
-		default-active="4"
+		:default-active="defaultActive"
 		:collapse="isCollapse"
 		background-color="transparent"
 		text-color="#fff"
@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { onBeforeRouteUpdate } from 'vue-router'
 
 withDefaults(
 	defineProps<{
@@ -24,6 +25,16 @@ withDefaults(
 		isCollapse: false
 	}
 )
+
+const defaultActive = ref<string>('2-1')
+
+onBeforeRouteUpdate((to) => {
+	console.log(to)
+	const fullPath = to.fullPath
+	const currentPath = fullPath.split('/')[1]
+	defaultActive.value = currentPath
+})
+
 const handleOpen = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
 }
@@ -47,6 +58,18 @@ const menuWrapper = ref([
 			{
 				index: '2-1',
 				title: '菜单2-1',
+				icon: 'Menu',
+				children: []
+			},
+			{
+				index: '2-2',
+				title: '菜单2-2',
+				icon: 'Menu',
+				children: []
+			},
+			{
+				index: '2-3',
+				title: '菜单2-3',
 				icon: 'Menu',
 				children: []
 			}

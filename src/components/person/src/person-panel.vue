@@ -46,7 +46,6 @@
 .panel {
 	flex: 1;
 	padding: 50px 40px;
-	border-top: 1px solid var(--person-item-border-color);
 	&-chat {
 		display: flex;
 		flex-direction: column;

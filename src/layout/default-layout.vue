@@ -4,7 +4,9 @@
 			class="bg-transition"
 			:style="{ width: isCollapse ? '64px' : '240px' }"
 		>
-			<div class="logo">Hi - Blog</div>
+			<div class="logo">
+				{{ isCollapse ? 'B' : 'Hi - Blog' }}
+			</div>
 			<hj-menu :is-collapse="isCollapse" />
 		</el-aside>
 		<el-container class="right">

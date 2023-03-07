@@ -11,7 +11,7 @@
 			</el-menu-item>
 		</template>
 		<template v-else>
-			<el-sub-menu :index="item.index">
+			<el-sub-menu :index="item.index" popper-class="hj-popover">
 				<template #title>
 					<el-icon :size="16" color="#fff">
 						<Icon :icon="item.icon" />
@@ -35,17 +35,59 @@ defineProps<{
 :deep(.el-sub-menu__title) {
 	height: 60px;
 	padding-left: 40px !important;
+	&.el-tooltip__trigger {
+		padding: 0 20px !important;
+	}
 }
 .el-menu-item {
 	height: 60px;
 	padding-left: 40px !important;
 }
 
+.el-popper {
+	.el-menu-item {
+		color: var(--submenu-color);
+		// padding-left: 50px !important;
+		&.is-active {
+			color: #fff;
+			.el-icon {
+				color: #fff !important;
+			}
+			&::before {
+				content: '';
+				display: none;
+			}
+		}
+	}
+}
+
 .el-sub-menu {
 	background: transparent;
+	&.is-active {
+		background-color: var(--menu-active-bg-color);
+		color: #fff;
+		position: relative;
+		.el-icon {
+			color: var(--menu-active-color);
+		}
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: block;
+			width: 6px;
+			height: 100%;
+			background-color: var(--menu-active-color);
+			border-radius: 0px 3px 3px 0px;
+		}
+	}
 	.el-menu-item {
 		color: var(--submenu-color);
 		padding-left: 50px !important;
+		.el-icon {
+			color: #8291a9 !important;
+		}
 		&.is-active {
 			color: #fff;
 			.el-icon {
@@ -71,7 +113,7 @@ defineProps<{
 			top: 0;
 			display: block;
 			width: 6px;
-			height: 100%;
+			height: 60px;
 			background-color: var(--menu-active-color);
 			border-radius: 0px 3px 3px 0px;
 		}
@@ -97,6 +139,14 @@ defineProps<{
 			background-color: var(--menu-active-color);
 			border-radius: 0px 3px 3px 0px;
 		}
+	}
+}
+</style>
+
+<style lang="less">
+.hj-popover {
+	.el-menu {
+		padding: 0;
 	}
 }
 </style>

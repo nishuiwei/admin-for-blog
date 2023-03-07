@@ -72,6 +72,7 @@ const message = ref<string>('')
 		flex-direction: column;
 		background-color: var(--header-background-color);
 		&-textarea {
+			min-height: 70px;
 			height: 100px;
 			display: flex;
 			justify-content: space-between;
