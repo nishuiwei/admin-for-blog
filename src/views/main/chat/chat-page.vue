@@ -24,7 +24,7 @@
 			<div class="person-panel-header">
 				<!-- panel-header -->
 				<div class="person-header">
-					<person-item />
+					<person-item message="Active 4 min ago" />
 				</div>
 				<div class="more">
 					<el-icon :size="17">

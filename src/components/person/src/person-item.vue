@@ -40,7 +40,7 @@ const props = withDefaults(
 		avatar:
 			'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
 		name: 'Alensa Langwealt',
-		message: 'Active 4 min ago',
+		message: 'Sending order #238907 Alansca new water inc.',
 		time: '9 min',
 		isNotLine: true,
 		index: null
@@ -84,6 +84,7 @@ const itemStyle = computed(() => {
 	}
 
 	&-avatar {
+		height: 36px;
 		:deep(.el-badge__content) {
 			border-color: var(--chat-bg-color) !important;
 			border-width: 3px !important;
