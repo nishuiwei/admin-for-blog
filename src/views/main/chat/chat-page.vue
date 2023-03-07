@@ -3,14 +3,35 @@
 		<!-- 联系人列表 -->
 		<div class="chat-person-list bg-transition">
 			<!-- search -->
-			<div style="height: 60px" />
+			<div class="search-container">
+				<div class="search-input">
+					<!-- icon & input -->
+					<el-icon :size="20">
+						<Icon icon="Search" />
+					</el-icon>
+					<el-input v-model="search_input" placeholder="Search..." />
+				</div>
+				<div class="btn-wrapper">
+					<HJIconButton :disabled="!!search_input" icon="Plus" />
+				</div>
+			</div>
 			<!-- person-list -->
 			<person-list />
 		</div>
 		<!-- 聊天内容 -->
 		<div class="chat-content bg-transition">
 			<!-- person-panel-header -->
-			<div style="height: 60px" />
+			<div class="person-panel-header">
+				<!-- panel-header -->
+				<div class="person-header">
+					<person-item />
+				</div>
+				<div class="more">
+					<el-icon :size="17">
+						<Icon icon="More" />
+					</el-icon>
+				</div>
+			</div>
 			<person-panel />
 			<!-- person-panel-input -->
 			<div class="chat-content-textarea">
@@ -38,11 +59,7 @@
 				</div>
 				<div class="btn-wrapper">
 					<!-- send -->
-					<el-button class="button" :disabled="!message">
-						<el-icon :size="14">
-							<Icon icon="Promotion" />
-						</el-icon>
-					</el-button>
+					<HJIconButton icon="Promotion" :disabled="!!message" shadow />
 				</div>
 			</div>
 		</div>
@@ -51,9 +68,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import HJIconButton from '../../../components/button'
 import { Icon } from '../../../components/icon'
+import PersonItem from '../../../components/person/src/person-item.vue'
 
 const message = ref<string>('')
+const search_input = ref<string>('')
 </script>
 
 <style scoped lang="less">
@@ -65,12 +85,59 @@ const message = ref<string>('')
 		width: 348px;
 		margin-right: 2px;
 		background-color: var(--chat-bg-color);
+		.search {
+			&-container {
+				display: flex;
+				align-items: center;
+				padding: 10px 20px;
+			}
+			&-input {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				.el-input {
+					:deep(.el-input__wrapper) {
+						outline: none;
+						border: none;
+						box-shadow: none;
+						background-color: transparent;
+						.el-input__inner {
+							font-weight: 500;
+							color: var(--text-title-color);
+							font-size: 14px;
+							&::placeholder {
+								color: var(--text-title-color);
+								font-weight: 500;
+							}
+						}
+					}
+				}
+
+				.el-icon {
+					color: #8291a9;
+				}
+			}
+		}
 	}
 	&-content {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		background-color: var(--header-background-color);
+		.person-panel-header {
+			padding: 12px 40px;
+			display: flex;
+			align-items: center;
+			height: 60px;
+			box-sizing: border-box;
+			border-bottom: 1px solid var(--person-item-border-color);
+			.person-header {
+				flex: 1;
+			}
+			.el-icon {
+				transform: rotate(90deg);
+			}
+		}
 		&-textarea {
 			min-height: 70px;
 			height: 100px;
@@ -108,20 +175,6 @@ const message = ref<string>('')
 						color: var(--text-title-color);
 						font-weight: 500;
 						font-size: 14px;
-					}
-				}
-			}
-			.btn-wrapper {
-				.button {
-					background: var(--send-btn-bg);
-					box-shadow: 0px 4px 8px 0px rgba(0, 129, 255, 0.48);
-					border: none;
-					color: #fff;
-					width: 40px;
-					height: 40px;
-					&:disabled {
-						opacity: 0.6;
-						color: #ccc;
 					}
 				}
 			}

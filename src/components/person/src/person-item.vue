@@ -2,11 +2,12 @@
 	<div
 		class="person bg-transition"
 		:class="active ? 'active' : ''"
+		:style="itemStyle"
 		@click="handleClickItem"
 	>
 		<!-- 头像 -->
 		<div class="person-avatar">
-			<el-badge is-dot class="item" type="success">
+			<el-badge :is-dot="isNotLine" class="item" type="success">
 				<el-avatar shape="square" :size="36" :src="avatar" />
 			</el-badge>
 		</div>
@@ -16,34 +17,50 @@
 			<p class="text-subtitle message">{{ message }}</p>
 		</div>
 		<!-- 时间 -->
-		<div class="person-time">
+		<div v-if="index !== null" class="person-time">
 			<p class="text-subtitle">{{ time }}</p>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
+
 const props = withDefaults(
 	defineProps<{
-		active: boolean
+		active?: boolean
 		avatar: string
 		name: string
 		message: string
 		time: string
-		index: number
+		index?: number | null
+		isNotLine?: boolean
 	}>(),
 	{
 		avatar:
 			'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
 		name: 'Alensa Langwealt',
-		message: 'Sending order #238907 Alansca new water inc.',
-		time: '9 min'
+		message: 'Active 4 min ago',
+		time: '9 min',
+		isNotLine: true,
+		index: null
 	}
 )
 const emits = defineEmits(['clickItem'])
 const handleClickItem = (): void => {
 	emits('clickItem', props.index)
 }
+
+const itemStyle = computed(() => {
+	if (props.index === null) {
+		console.log(123)
+		return {
+			padding: 0,
+			'border-top': 'none'
+		}
+	}
+	return {}
+})
 </script>
 
 <style scoped lang="less">
