@@ -1,12 +1,18 @@
 <template>
 	<el-container class="default-layout">
-		<el-aside>
+		<el-aside
+			class="bg-transition"
+			:style="{ width: isCollapse ? '64px' : '240px' }"
+		>
 			<div class="logo">Hi - Blog</div>
-			<hj-menu />
+			<hj-menu :is-collapse="isCollapse" />
 		</el-aside>
 		<el-container class="right">
 			<el-header class="bg-transition">
-				<hj-header />
+				<hj-header
+					:is-collapse="isCollapse"
+					@click-collapse="handleClickCollapse"
+				/>
 			</el-header>
 			<el-main id="main" class="bg-transition">
 				<slot name="main" />
@@ -15,7 +21,15 @@
 	</el-container>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isCollapse = ref<boolean>(false)
+
+const handleClickCollapse = (collapseSatus: boolean): void => {
+	isCollapse.value = collapseSatus
+}
+</script>
 
 <style scoped lang="less">
 @height: 80px;

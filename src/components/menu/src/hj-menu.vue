@@ -15,8 +15,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const isCollapse = ref<boolean>(false)
 
+withDefaults(
+	defineProps<{
+		isCollapse: boolean
+	}>(),
+	{
+		isCollapse: false
+	}
+)
 const handleOpen = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
 }

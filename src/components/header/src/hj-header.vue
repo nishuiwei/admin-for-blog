@@ -1,5 +1,10 @@
 <template>
 	<div class="header-container">
+		<div class="header-collapse" @click="handleClickCollapse">
+			<el-icon :size="20">
+				<Icon :icon="isCollapse ? 'Expand' : 'Fold'" />
+			</el-icon>
+		</div>
 		<p class="header-title">Welcome to Hi - blog Admin Dashboard Ui</p>
 		<div class="header-user">
 			<div class="header-user-theme" @click="toggleDark()">
@@ -35,7 +40,22 @@
 import { Icon } from '../../icon'
 import { useTheme } from '../../../composables'
 
+const props = withDefaults(
+	defineProps<{
+		isCollapse: boolean
+	}>(),
+	{
+		isCollapse: false
+	}
+)
+
 const { isDark, toggleDark } = useTheme
+
+const emits = defineEmits(['clickCollapse'])
+
+const handleClickCollapse = (): void => {
+	emits('clickCollapse', !props.isCollapse)
+}
 </script>
 
 <style scoped lang="less">
@@ -45,6 +65,9 @@ const { isDark, toggleDark } = useTheme
 		align-items: center;
 		justify-content: space-between;
 		height: 100%;
+	}
+	&-collapse {
+		cursor: pointer;
 	}
 	&-title {
 		font-weight: 500;

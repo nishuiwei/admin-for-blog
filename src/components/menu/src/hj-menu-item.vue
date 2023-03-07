@@ -5,7 +5,9 @@
 				<el-icon :size="16" color="#000">
 					<Icon :icon="item.icon" />
 				</el-icon>
-				<span style="margin-left: 10px"> {{ item.title }} </span>
+				<template #title>
+					<span style="margin-left: 10px"> {{ item.title }} </span>
+				</template>
 			</el-menu-item>
 		</template>
 		<template v-else>
@@ -14,7 +16,7 @@
 					<el-icon :size="16" color="#fff">
 						<Icon :icon="item.icon" />
 					</el-icon>
-					<span style="margin-left: 10px">{{ item.title }}</span>
+					<span style="margin-left: 10px"> {{ item.title }} </span>
 				</template>
 				<hj-menu-item :menu="item.children" />
 			</el-sub-menu>
