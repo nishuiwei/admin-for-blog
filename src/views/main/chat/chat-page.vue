@@ -77,6 +77,7 @@ const search_input = ref<string>('')
 </script>
 
 <style scoped lang="less">
+@border: 2px solid var(--person-item-border-color);
 .chat {
 	display: flex;
 	height: 100%;
@@ -90,6 +91,9 @@ const search_input = ref<string>('')
 				display: flex;
 				align-items: center;
 				padding: 10px 20px;
+				border-bottom: @border;
+				height: 60px;
+				box-sizing: border-box;
 			}
 			&-input {
 				flex: 1;
@@ -130,7 +134,7 @@ const search_input = ref<string>('')
 			align-items: center;
 			height: 60px;
 			box-sizing: border-box;
-			border-bottom: 1px solid var(--person-item-border-color);
+			border-bottom: @border;
 			.person-header {
 				flex: 1;
 			}

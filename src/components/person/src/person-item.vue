@@ -75,6 +75,9 @@ const itemStyle = computed(() => {
 		background-color: var(--header-background-color);
 		opacity: 0.7;
 	}
+	&:first-child {
+		border-top: none;
+	}
 	&.active {
 		background-color: var(--header-background-color);
 		border-radius: 5px;
