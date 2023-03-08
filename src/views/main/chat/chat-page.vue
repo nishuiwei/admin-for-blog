@@ -32,7 +32,7 @@
 					</el-icon>
 				</div>
 			</div>
-			<person-panel />
+			<person-panel :data="messageContentData" />
 			<!-- person-panel-input -->
 			<div class="chat-content-textarea">
 				<div class="icon-wrapper">
@@ -57,7 +57,7 @@
 						placeholder="Write a message…"
 					/>
 				</div>
-				<div class="btn-wrapper">
+				<div class="btn-wrapper" @click="handleClickSendMessage">
 					<!-- send -->
 					<HJIconButton icon="Promotion" :disabled="!!message" shadow />
 				</div>
@@ -68,12 +68,40 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import HJIconButton from '../../../components/button'
 import { Icon } from '../../../components/icon'
 import PersonItem from '../../../components/person/src/person-item.vue'
+import { sendMessage } from '../../../utils/wss'
+import {
+	connectWithScoketIOServer,
+	createChat,
+	messageContent
+} from './../../../utils/wss'
+connectWithScoketIOServer()
 
 const message = ref<string>('')
 const search_input = ref<string>('')
+
+const route = useRoute()
+
+const messageContentData = ref(messageContent)
+
+createChat({
+	sender: route.query.sender,
+	receiver: route.query.receiver
+})
+
+const handleClickSendMessage = async () => {
+	await sendMessage({
+		message: message.value,
+		userId: route.query.receiver,
+		id: route.query.sender,
+		type: 'sender'
+	})
+
+	message.value = ''
+}
 </script>
 
 <style scoped lang="less">
