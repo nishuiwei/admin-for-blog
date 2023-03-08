@@ -1,56 +1,43 @@
 <template>
 	<div class="panel">
-		<!-- 回复 -->
-		<div class="reply panel-chat">
-			<div class="panel-chat-main">
-				<!-- 头像 -->
-				<el-avatar
-					shape="square"
-					:size="36"
-					src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png"
-				/>
-				<div class="person-message">
-					<!-- 信息 -->
-					<div class="message">Hey Hi Elena Damyanti…!</div>
-					<!-- 时间 -->
-					<p class="time">10:50AM</p>
-				</div>
-			</div>
-		</div>
-		<!-- 发送 -->
-		<div class="send panel-chat">
-			<div class="panel-chat-main">
-				<!-- 头像 -->
-				<el-avatar
-					shape="square"
-					:size="36"
-					src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png"
-				/>
-				<div class="person-message">
-					<!-- 信息 -->
-					<div class="message">
-						HThanks, all things went well. Just a little boaring at home.
-						desktop publishing software like Aldus PageMaker including versions
-						of Lorem Ipsum.
+		<template v-for="(item, index) in data" :key="index">
+			<!-- 回复 -->
+			<div class="panel-chat" :class="item.type">
+				<div class="panel-chat-main">
+					<!-- 头像 -->
+					<el-avatar
+						shape="square"
+						:size="36"
+						src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png"
+					/>
+					<div class="person-message">
+						<!-- 信息 -->
+						<div class="message">{{ item.message }}</div>
+						<!-- 时间 -->
+						<p class="time">10:50AM</p>
 					</div>
-					<!-- 时间 -->
-					<p class="time">10:50AM</p>
 				</div>
 			</div>
-		</div>
+			<!-- 发送 -->
+		</template>
 	</div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+defineProps<{
+	data: [any]
+}>()
+</script>
 <style scoped lang="less">
 @margin: 16px;
 .panel {
 	flex: 1;
 	padding: 50px 40px;
+	overflow: auto;
 	&-chat {
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 50px;
-		&.send {
+		&.sender {
 			flex-direction: column;
 			.message {
 				margin-right: @margin;
@@ -65,7 +52,7 @@
 				left: 5px;
 			}
 		}
-		&.reply {
+		&.receiver {
 			flex-direction: column;
 			.message {
 				margin-left: @margin;
