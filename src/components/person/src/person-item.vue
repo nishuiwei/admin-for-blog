@@ -106,8 +106,15 @@ const itemStyle = computed(() => {
 		font-size: 14px;
 		line-height: 14px;
 		margin-bottom: 5px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
 	}
-
+	&-time {
+		flex-shrink: 0;
+	}
 	.text-subtitle {
 		font-weight: 400;
 		font-size: 13px;

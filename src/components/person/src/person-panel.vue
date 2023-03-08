@@ -89,6 +89,9 @@
 	.panel-chat-main {
 		display: flex;
 		align-items: flex-end;
+		.el-avatar {
+			flex-shrink: 0;
+		}
 	}
 	.message {
 		padding: 12px 20px;
