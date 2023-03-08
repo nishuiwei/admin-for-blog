@@ -28,6 +28,7 @@ import { computed } from 'vue'
 
 const props = withDefaults(
 	defineProps<{
+		id: number
 		active?: boolean
 		avatar: string
 		name: string
@@ -53,7 +54,7 @@ const handleClickItem = (): void => {
 
 const itemStyle = computed(() => {
 	if (props.index === null) {
-		console.log(123)
+		console.log(props)
 		return {
 			padding: 0,
 			'border-top': 'none'

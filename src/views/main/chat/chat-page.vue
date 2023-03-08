@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<!-- person-list -->
-			<person-list />
+			<person-list :data="personListData" />
 		</div>
 		<!-- 聊天内容 -->
 		<div class="chat-content bg-transition">
@@ -24,7 +24,7 @@
 			<div class="person-panel-header">
 				<!-- panel-header -->
 				<div class="person-header">
-					<person-item message="Active 4 min ago" />
+					<person-item :id="1" message="Active 4 min ago" />
 				</div>
 				<div class="more">
 					<el-icon :size="17">
@@ -84,6 +84,28 @@ const message = ref<string>('')
 const search_input = ref<string>('')
 
 const route = useRoute()
+
+interface IPerson {
+	id: number
+	name: string
+	message: string
+	time: string
+}
+
+const personListData = ref<IPerson[]>([
+	{
+		id: 1,
+		name: '卫慧杰',
+		message: '我是卫慧杰',
+		time: '6 min'
+	},
+	{
+		id: 2,
+		name: '王璇',
+		message: '我是王璇',
+		time: '10 min'
+	}
+])
 
 const messageContentData = ref(messageContent)
 

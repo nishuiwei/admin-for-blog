@@ -1,7 +1,8 @@
 <template>
 	<div class="person-list">
-		<template v-for="(item, index) in 10" :key="item">
+		<template v-for="(item, index) in data" :key="item.id">
 			<person-item
+				v-bind="item"
 				:active="index === activeIndex"
 				:index="index"
 				@click-item="handleClickItem"
@@ -11,7 +12,22 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+
+interface IPerson {
+	id: number
+	name: string
+	message: string
+	time: string
+}
+
+const props = defineProps<{
+	data: IPerson[]
+}>()
+
+onMounted(() => {
+	console.log(props.data)
+})
 
 const activeIndex = ref<number>(2)
 
