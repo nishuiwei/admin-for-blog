@@ -105,14 +105,15 @@ const handleClickSendMessage = async () => {
 </script>
 
 <style scoped lang="less">
-@border: 2px solid var(--person-item-border-color);
+@border: 1px solid var(--person-header-border-color);
 .chat {
 	display: flex;
 	height: 100%;
 	overflow: hidden;
 	&-person-list {
 		width: 348px;
-		margin-right: 2px;
+		// margin-right: 2px;
+		border-right: @border;
 		background-color: var(--chat-bg-color);
 		.search {
 			&-container {
