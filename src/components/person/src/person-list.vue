@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-interface IPerson {
+type Person = {
 	id: number
 	name: string
 	message: string
@@ -22,13 +22,16 @@ interface IPerson {
 }
 
 defineProps<{
-	data: IPerson[]
+	data: Person[]
 }>()
 
 const activeIndex = ref<number>(2)
 
-const handleClickItem = (index: number): void => {
+const emits = defineEmits(['clickActive'])
+
+const handleClickItem = (data: Person, index: number): void => {
 	activeIndex.value = index
+	emits('clickActive', { personActive: !data.id, data })
 }
 </script>
 

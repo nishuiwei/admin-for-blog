@@ -28,7 +28,7 @@ import { computed } from 'vue'
 
 const props = withDefaults(
 	defineProps<{
-		id: number
+		id?: number
 		active?: boolean
 		avatar: string
 		name: string
@@ -38,6 +38,7 @@ const props = withDefaults(
 		isNotLine?: boolean
 	}>(),
 	{
+		id: 0,
 		avatar:
 			'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
 		name: 'Alensa Langwealt',
@@ -49,7 +50,11 @@ const props = withDefaults(
 )
 const emits = defineEmits(['clickItem'])
 const handleClickItem = (): void => {
-	emits('clickItem', props.index)
+	emits(
+		'clickItem',
+		{ name: props.name, time: props.time, avatar: props.avatar, id: props.id },
+		props.index
+	)
 }
 
 const itemStyle = computed(() => {

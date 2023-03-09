@@ -16,52 +16,57 @@
 				</div>
 			</div>
 			<!-- person-list -->
-			<person-list :data="personListData" />
+			<person-list :data="personListData" @click-active="handleClickActive" />
 		</div>
 		<!-- 聊天内容 -->
 		<div class="chat-content bg-transition">
-			<!-- person-panel-header -->
-			<div class="person-panel-header">
-				<!-- panel-header -->
-				<div class="person-header">
-					<person-item :id="1" message="Active 4 min ago" />
-				</div>
-				<div class="more">
-					<el-icon :size="17">
-						<Icon icon="More" />
-					</el-icon>
-				</div>
-			</div>
-			<person-panel :data="messageContentData" />
-			<!-- person-panel-input -->
-			<div class="chat-content-textarea">
-				<div class="icon-wrapper">
-					<!-- icon 附件 / emjoy -->
-					<div class="icon-item">
-						<el-icon :size="20">
-							<Icon icon="Paperclip" />
-						</el-icon>
+			<template v-if="isPersonActive">
+				<!-- person-panel-header -->
+				<div class="person-panel-header">
+					<!-- panel-header -->
+					<div class="person-header">
+						<person-item v-bind="person" />
 					</div>
-					<div class="icon-item">
-						<el-icon :size="20">
-							<Icon icon="PictureRounded" />
+					<div class="more">
+						<el-icon :size="17">
+							<Icon icon="More" />
 						</el-icon>
 					</div>
 				</div>
-				<div class="input-wrapper">
-					<!-- input -->
-					<el-input
-						v-model="message"
-						autosize
-						type="textarea"
-						placeholder="Write a message…"
-					/>
+				<person-panel :data="messageContentData" />
+				<!-- person-panel-input -->
+				<div class="chat-content-textarea">
+					<div class="icon-wrapper">
+						<!-- icon 附件 / emjoy -->
+						<div class="icon-item">
+							<el-icon :size="20">
+								<Icon icon="Paperclip" />
+							</el-icon>
+						</div>
+						<div class="icon-item">
+							<el-icon :size="20">
+								<Icon icon="PictureRounded" />
+							</el-icon>
+						</div>
+					</div>
+					<div class="input-wrapper">
+						<!-- input -->
+						<el-input
+							v-model="message"
+							autosize
+							type="textarea"
+							placeholder="Write a message…"
+						/>
+					</div>
+					<div class="btn-wrapper" @click="handleClickSendMessage">
+						<!-- send -->
+						<HJIconButton icon="Promotion" :disabled="!!message" shadow />
+					</div>
 				</div>
-				<div class="btn-wrapper" @click="handleClickSendMessage">
-					<!-- send -->
-					<HJIconButton icon="Promotion" :disabled="!!message" shadow />
-				</div>
-			</div>
+			</template>
+			<template v-else>
+				<el-empty :image-size="200" />
+			</template>
 		</div>
 	</div>
 </template>
@@ -80,17 +85,19 @@ import {
 } from './../../../utils/wss'
 connectWithScoketIOServer()
 
-const message = ref<string>('')
-const search_input = ref<string>('')
-
-const route = useRoute()
-
 interface IPerson {
 	id: number
 	name: string
 	message: string
 	time: string
 }
+
+const route = useRoute()
+
+const message = ref<string>('')
+const search_input = ref<string>('')
+const isPersonActive = ref<boolean>(false)
+const person = ref<IPerson | null>()
 
 const personListData = ref<IPerson[]>([
 	{
@@ -106,6 +113,18 @@ const personListData = ref<IPerson[]>([
 		time: '10 min'
 	}
 ])
+
+const handleClickActive = ({
+	data,
+	personActive
+}: {
+	data: IPerson
+	personActive: boolean
+}) => {
+	console.log(data, personActive)
+	isPersonActive.value = !personActive
+	person.value = { ...data, message: `Active ${data.time} ago` }
+}
 
 const messageContentData = ref(messageContent)
 
@@ -179,6 +198,9 @@ const handleClickSendMessage = async () => {
 		display: flex;
 		flex-direction: column;
 		background-color: var(--header-background-color);
+		.el-empty {
+			height: 100%;
+		}
 		.person-panel-header {
 			padding: 12px 40px;
 			display: flex;
