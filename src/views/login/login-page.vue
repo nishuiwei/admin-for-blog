@@ -68,10 +68,10 @@ const handleClickSignIN = () => {
 		background-color: var(--background-color);
 	}
 	&-box {
-		box-shadow: 0px 10px 20px 0px #dbe7ee;
+		box-shadow: 0px 10px 20px 0px var(--person-item-border-color);
 		width: 1128px;
 		height: 700px;
-		background: #ffffff;
+		background: var(--login-box-bg);
 		border-radius: 8px;
 		display: flex;
 		overflow: hidden;
@@ -84,7 +84,7 @@ const handleClickSignIN = () => {
 			.title {
 				font-size: 30px;
 				font-weight: bold;
-				color: #000;
+				color: var(--login-text-title-color);
 				margin-bottom: 95px;
 			}
 			.subtitle {
@@ -113,6 +113,7 @@ const handleClickSignIN = () => {
 				width: @width;
 				height: 40px;
 				background-color: var(--send-btn-bg);
+				border: none;
 				&:disabled {
 					opacity: 0.7;
 				}

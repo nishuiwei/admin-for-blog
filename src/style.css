@@ -17,6 +17,8 @@ body,
 	--person-header-border-color: #dbe7ee;
 	--person-item-border-color: #dbe7ee;
 	--text-title-color: #242a38;
+	--login-box-bg: #fff;
+	--login-text-title-color: #000;
 
 	--send-btn-bg: #0081ff;
 	--submenu-color: #8291a9;
@@ -32,6 +34,8 @@ body,
 	--chat-bg-color: #161d26;
 	--menu-border-color: #384352;
 	--text-title-color: #fff;
+	--login-box-bg: #1f2935;
+	--login-text-title-color: #fff;
 	--person-item-border-color: #1f2935;
 	--person-header-border-color: #8291a9;
 }
