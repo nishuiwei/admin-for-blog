@@ -21,12 +21,12 @@ class Service {
 		this.interceptorsObj = config.interceptors
 		// 拦截器执行顺序 接口请求 -> 实例请求 -> 全局请求 -> 实例响应 -> 全局响应 -> 接口响应
 		this.instance.interceptors.request.use(
-			(res: InternalAxiosRequestConfig) => {
+			(config: InternalAxiosRequestConfig) => {
 				const controller = new AbortController()
-				const url = res.url || ''
-				res.signal = controller.signal
+				const url = config.url || ''
+				config.signal = controller.signal
 				this.abortControllerMap.set(url, controller)
-				return res
+				return config
 			},
 			(err: any) => err
 		)
@@ -92,6 +92,18 @@ class Service {
 			this.abortControllerMap.get(_url)?.abort()
 			this.abortControllerMap.delete(_url)
 		}
+	}
+	get<T = any>(config: RequestConfig<T>): Promise<T> {
+		return this.request<T>({ ...config, method: 'GET' })
+	}
+	post<T = any>(config: RequestConfig<T>): Promise<T> {
+		return this.request<T>({ ...config, method: 'POST' })
+	}
+	delete<T = any>(config: RequestConfig<T>): Promise<T> {
+		return this.request<T>({ ...config, method: 'DELETE' })
+	}
+	patch<T = any>(config: RequestConfig<T>): Promise<T> {
+		return this.request<T>({ ...config, method: 'PATCH' })
 	}
 }
 

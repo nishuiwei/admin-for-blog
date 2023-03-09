@@ -19,7 +19,7 @@ const hjRequest = new HJRequest({
 			return err
 		},
 		responseInterceptors: (res) => {
-			return res.data
+			return res
 		},
 		responseInterceptorsCatch: (err) => {
 			const { response } = err

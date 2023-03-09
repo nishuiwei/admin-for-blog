@@ -38,6 +38,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { loginRequest } from './../../service/login'
 
 const router = useRouter()
 
@@ -50,10 +51,14 @@ const isDisabled = computed(() => {
 	return !!loginForm.value.email && !!loginForm.value.password
 })
 
-const handleClickSignIN = () => {
+const handleClickSignIN = async () => {
 	const payload = loginForm.value
 	console.log('登陆 ===> ', payload)
-	router.push('/main')
+	const response = await loginRequest(payload)
+	console.log(response)
+	if (response.success) {
+		router.push('/main')
+	}
 }
 </script>
 
