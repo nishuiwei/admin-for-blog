@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 interface IPerson {
 	id: number
@@ -21,13 +21,9 @@ interface IPerson {
 	time: string
 }
 
-const props = defineProps<{
+defineProps<{
 	data: IPerson[]
 }>()
-
-onMounted(() => {
-	console.log(props.data)
-})
 
 const activeIndex = ref<number>(2)
 

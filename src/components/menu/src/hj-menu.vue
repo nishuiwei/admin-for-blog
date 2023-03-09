@@ -6,8 +6,6 @@
 		text-color="#fff"
 		unique-opened
 		router
-		@open="handleOpen"
-		@close="handleClose"
 	>
 		<hj-menu-item :menu="menuWrapper" />
 	</el-menu>
@@ -29,19 +27,10 @@ withDefaults(
 const defaultActive = ref<string>('2-1')
 
 onBeforeRouteUpdate((to) => {
-	console.log(to)
 	const fullPath = to.fullPath
 	const currentPath = fullPath.split('/')[1]
 	defaultActive.value = currentPath
 })
-
-const handleOpen = (key: string, keyPath: string[]) => {
-	console.log(key, keyPath)
-}
-
-const handleClose = (key: string, keyPath: string[]) => {
-	console.log(key, keyPath)
-}
 
 const menuWrapper = ref([
 	{

@@ -54,7 +54,6 @@ const handleClickItem = (): void => {
 
 const itemStyle = computed(() => {
 	if (props.index === null) {
-		console.log(props)
 		return {
 			padding: 0,
 			'border-top': 'none'
