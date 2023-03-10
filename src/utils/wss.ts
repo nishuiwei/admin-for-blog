@@ -44,14 +44,16 @@ export const messageContent = ref([
 		message: 'Hey Hi Elena Damyanti…!',
 		type: 'receiver',
 		userId: '2',
-		id: '1'
+		id: '1',
+		time: '9:50AM'
 	},
 	{
 		message:
 			'HThanks, all things went well. Just a little boaring at home. desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
 		type: 'sender',
 		userId: '1',
-		id: '2'
+		id: '2',
+		time: '10:50AM'
 	}
 ])
 
@@ -60,6 +62,7 @@ interface IMessage {
 	type: string
 	userId: string
 	id: string
+	time: string
 }
 
 const directMessageHandler = (data: IMessage) => {

@@ -39,6 +39,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { loginRequest } from './../../service/login'
+import LocalCache from './../../utils/cache'
 
 const router = useRouter()
 
@@ -56,7 +57,9 @@ const handleClickSignIN = async () => {
 	console.log('登陆 ===> ', payload)
 	const response = await loginRequest(payload)
 	console.log(response)
-	if (response.success) {
+	if (response.code === 200) {
+		LocalCache.setCache('token', response.data.token)
+		LocalCache.setCache('user', response.data)
 		router.push('/main')
 	}
 }

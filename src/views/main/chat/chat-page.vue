@@ -72,47 +72,52 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed } from 'vue'
 import HJIconButton from '../../../components/button'
 import { Icon } from '../../../components/icon'
 import PersonItem from '../../../components/person/src/person-item.vue'
+import { personContactRequest } from '../../../service/users'
 import { sendMessage } from '../../../utils/wss'
 import {
 	connectWithScoketIOServer,
 	createChat,
 	messageContent
 } from './../../../utils/wss'
+import LocalCache from './../../../utils/cache'
+
 connectWithScoketIOServer()
 
-interface IPerson {
-	id: number
-	name: string
-	message: string
-	time: string
+type IPerson = {
+	_id?: string
+	id: string
+	username: string
+	email: string
+	profilePic: string
+	message?: string
+	time?: string
 }
 
-const route = useRoute()
+// const route = useRoute()
 
 const message = ref<string>('')
 const search_input = ref<string>('')
 const isPersonActive = ref<boolean>(false)
 const person = ref<IPerson | null>()
+const personListData = ref<IPerson[]>([])
+const getPersonContactList = async () => {
+	const response = await personContactRequest()
+	personListData.value = response.data.map((item: IPerson) => {
+		return {
+			...item,
+			id: item._id
+		}
+	})
+}
+getPersonContactList()
 
-const personListData = ref<IPerson[]>([
-	{
-		id: 1,
-		name: '卫慧杰',
-		message: '我是卫慧杰',
-		time: '6 min'
-	},
-	{
-		id: 2,
-		name: '王璇',
-		message: '我是王璇',
-		time: '10 min'
-	}
-])
+const sender = computed(() => {
+	return LocalCache.getCache('user')?.id
+})
 
 const handleClickActive = ({
 	data,
@@ -121,23 +126,21 @@ const handleClickActive = ({
 	data: IPerson
 	personActive: boolean
 }) => {
-	console.log(data, personActive)
 	isPersonActive.value = !personActive
 	person.value = { ...data, message: `Active ${data.time} ago` }
+	createChat({
+		sender: sender.value,
+		receiver: data.id
+	})
 }
 
 const messageContentData = ref(messageContent)
 
-createChat({
-	sender: route.query.sender,
-	receiver: route.query.receiver
-})
-
 const handleClickSendMessage = async () => {
 	await sendMessage({
 		message: message.value,
-		userId: route.query.receiver,
-		id: route.query.sender,
+		userId: person.value?.id,
+		id: sender.value,
 		type: 'sender'
 	})
 

@@ -8,12 +8,14 @@
 		<!-- 头像 -->
 		<div class="person-avatar">
 			<el-badge :is-dot="isNotLine" class="item" type="success">
-				<el-avatar shape="square" :size="36" :src="avatar" />
+				<el-avatar shape="square" :size="36" :src="profilePic">
+					{{ username?.split('')[0] }}
+				</el-avatar>
 			</el-badge>
 		</div>
 		<!-- 姓名 & 消息 -->
 		<div class="person-desc">
-			<p class="person-name">{{ name }}</p>
+			<p class="person-name">{{ username }}</p>
 			<p class="text-subtitle message">{{ message }}</p>
 		</div>
 		<!-- 时间 -->
@@ -28,20 +30,20 @@ import { computed } from 'vue'
 
 const props = withDefaults(
 	defineProps<{
-		id?: number
+		id?: string | number
 		active?: boolean
-		avatar: string
-		name: string
-		message: string
-		time: string
+		profilePic: string
+		username: string
+		message?: string
+		time?: string
 		index?: number | null
 		isNotLine?: boolean
 	}>(),
 	{
 		id: 0,
-		avatar:
+		profilePic:
 			'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-		name: 'Alensa Langwealt',
+		username: 'Alensa Langwealt',
 		message: 'Sending order #238907 Alansca new water inc.',
 		time: '9 min',
 		isNotLine: true,
@@ -52,7 +54,12 @@ const emits = defineEmits(['clickItem'])
 const handleClickItem = (): void => {
 	emits(
 		'clickItem',
-		{ name: props.name, time: props.time, avatar: props.avatar, id: props.id },
+		{
+			username: props.username,
+			time: props.time,
+			profilePic: props.profilePic,
+			id: props.id
+		},
 		props.index
 	)
 }

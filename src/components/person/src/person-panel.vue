@@ -14,7 +14,7 @@
 						<!-- 信息 -->
 						<div class="message">{{ item.message }}</div>
 						<!-- 时间 -->
-						<p class="time">10:50AM</p>
+						<p class="time">{{ item.time }}</p>
 					</div>
 				</div>
 			</div>
