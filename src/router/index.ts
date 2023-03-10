@@ -24,7 +24,32 @@ const routes: RouteRecordRaw[] = [
 			{
 				path: '/main/chat',
 				name: 'chat',
-				component: () => import('~/views/main/chat/chat-page.vue')
+				component: () => import('~/views/main/chat/chat-page.vue'),
+				meta: {
+					auth: true,
+					title: '线上聊天'
+				}
+			},
+			{
+				path: '/main/settings',
+				name: 'settings',
+				redirect: '/main/settings/menus',
+				meta: {
+					auth: true,
+					title: '系统设置'
+				},
+				children: [
+					{
+						path: '/main/settings/menus',
+						name: 'settings-menus',
+						component: () =>
+							import('~/views/main/settings/menus/menus-page.vue'),
+						meta: {
+							auth: true,
+							title: '菜单设定'
+						}
+					}
+				]
 			}
 		]
 	}

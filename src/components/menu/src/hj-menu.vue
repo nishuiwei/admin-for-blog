@@ -71,10 +71,17 @@ const menuWrapper = ref([
 		children: []
 	},
 	{
-		index: '4',
-		title: '菜单4',
+		index: '/main/settings',
+		title: '系统设置',
 		icon: 'Menu',
-		children: []
+		children: [
+			{
+				index: '/main/settings/menus',
+				title: '菜单管理',
+				icon: 'Menu',
+				children: []
+			}
+		]
 	}
 ])
 </script>
