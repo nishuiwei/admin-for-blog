@@ -18,6 +18,8 @@ body,
 	--person-item-border-color: #dbe7ee;
 	--text-title-color: #242a38;
 	--login-box-bg: #fff;
+	--table-hover-bg: rgba(255, 255, 255, 0.5);
+
 	--login-text-title-color: #000;
 
 	--send-btn-bg: #0081ff;
@@ -35,6 +37,7 @@ body,
 	--menu-border-color: #384352;
 	--text-title-color: #fff;
 	--login-box-bg: #1f2935;
+	--table-hover-bg: rgba(31, 41, 53, 0.5);
 	--login-text-title-color: #fff;
 	--person-item-border-color: #1f2935;
 	--person-header-border-color: #8291a9;

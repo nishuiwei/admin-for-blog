@@ -29,6 +29,8 @@ declare module '@vue/runtime-core' {
 		ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
 		ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
 		ElSwitch: typeof import('element-plus/es')['ElSwitch']
+		ElTable: typeof import('element-plus/es')['ElTable']
+		ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
 		HjButton: typeof import('./src/components/button/src/hj-button.vue')['default']
 		HjHeader: typeof import('./src/components/header/src/hj-header.vue')['default']
 		HjMenu: typeof import('./src/components/menu/src/hj-menu.vue')['default']
