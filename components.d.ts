@@ -31,6 +31,7 @@ declare module '@vue/runtime-core' {
 		ElSwitch: typeof import('element-plus/es')['ElSwitch']
 		ElTable: typeof import('element-plus/es')['ElTable']
 		ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+		ElTag: typeof import('element-plus/es')['ElTag']
 		HjButton: typeof import('./src/components/button/src/hj-button.vue')['default']
 		HjHeader: typeof import('./src/components/header/src/hj-header.vue')['default']
 		HjMenu: typeof import('./src/components/menu/src/hj-menu.vue')['default']
@@ -42,12 +43,13 @@ declare module '@vue/runtime-core' {
 		IEpEdit: typeof import('~icons/ep/edit')['default']
 		Menu: typeof import('./src/components/hj-menu/src/menu.vue')['default']
 		MenuItem: typeof import('./src/components/menu/src/menu-item.vue')['default']
+		PageContent: typeof import('./src/components/page-content/src/page-content.vue')['default']
 		PersonItem: typeof import('./src/components/person/src/person-item.vue')['default']
 		PersonList: typeof import('./src/components/person/src/person-list.vue')['default']
 		PersonPanel: typeof import('./src/components/person/src/person-panel.vue')['default']
 		RouterLink: typeof import('vue-router')['RouterLink']
 		RouterView: typeof import('vue-router')['RouterView']
-		Src: typeof import('./src/components/menu/src/index.vue')['default']
+		Src: typeof import('./src/components/page-content/src/index.vue')['default']
 		SunnyIcon: typeof import('./src/components/icon/src/Sunny-icon.vue')['default']
 	}
 }

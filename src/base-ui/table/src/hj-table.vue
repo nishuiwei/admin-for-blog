@@ -1,74 +1,94 @@
 <template>
 	<div class="hj-table">
-		<el-table :data="tableData" style="width: 100%" lazy row-key="id">
-			<el-table-column type="selection" width="55" />
-			<el-table-column prop="date" label="Date" width="180" />
-			<el-table-column prop="name" label="Name" width="180" />
-			<el-table-column prop="address" label="Address" />
+		<el-table :data="listData" style="width: 100%" lazy :row-key="rowId">
+			<template v-for="propItem in propList" :key="propItem._id">
+				<el-table-column v-bind="propItem">
+					<template #default="scope">
+						<slot :name="propItem?.slotName" :row="scope.row">
+							{{ scope.row[propItem?.prop ?? ''] }}
+						</slot>
+					</template>
+				</el-table-column>
+			</template>
 		</el-table>
 	</div>
 </template>
 <script lang="ts" setup>
-type TableData = {
-	id: number
-	date: string
-	name: string
-	address: string
-	children?: TableData[]
-}
-
-const tableData: TableData[] = [
+withDefaults(
+	defineProps<{
+		listData: any[]
+		totalData?: number
+		propList: any
+		showTreeColumn: boolean
+		showIndexColumn: boolean
+		showCheckColumn: boolean
+		rowId: string
+	}>(),
 	{
-		id: 1,
-		date: '2016-05-03',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles'
-	},
-	{
-		id: 2,
-		date: '2016-05-02',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles'
-	},
-	{
-		id: 3,
-		date: '2016-05-04',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles'
-	},
-	{
-		id: 4,
-		date: '2016-05-01',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-		children: [
-			{
-				id: 5,
-				date: '2016-05-01',
-				name: 'wangxiaohu',
-				address: 'No. 189, Grove St, Los Angeles'
-			},
-			{
-				id: 6,
-				date: '2016-05-01',
-				name: 'wangxiaohu',
-				address: 'No. 189, Grove St, Los Angeles'
-			}
-		]
-	},
-	{
-		id: 7,
-		date: '2016-05-02',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles'
-	},
-	{
-		id: 8,
-		date: '2016-05-04',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles'
+		totalData: 0
 	}
-]
+)
+
+// type TableData = {
+// 	id: number
+// 	date: string
+// 	name: string
+// 	address: string
+// 	children?: TableData[]
+// }
+
+// const tableData: TableData[] = [
+// 	{
+// 		id: 1,
+// 		date: '2016-05-03',
+// 		name: 'Tom',
+// 		address: 'No. 189, Grove St, Los Angeles'
+// 	},
+// 	{
+// 		id: 2,
+// 		date: '2016-05-02',
+// 		name: 'Tom',
+// 		address: 'No. 189, Grove St, Los Angeles'
+// 	},
+// 	{
+// 		id: 3,
+// 		date: '2016-05-04',
+// 		name: 'Tom',
+// 		address: 'No. 189, Grove St, Los Angeles'
+// 	},
+// 	{
+// 		id: 4,
+// 		date: '2016-05-01',
+// 		name: 'Tom',
+// 		address: 'No. 189, Grove St, Los Angeles',
+// 		children: [
+// 			{
+// 				id: 5,
+// 				date: '2016-05-01',
+// 				name: 'wangxiaohu',
+// 				address: 'No. 189, Grove St, Los Angeles'
+// 			},
+// 			{
+// 				id: 6,
+// 				date: '2016-05-01',
+// 				name: 'wangxiaohu',
+// 				address: 'No. 189, Grove St, Los Angeles'
+// 			}
+// 		]
+// 	},
+// 	{
+// 		id: 7,
+// 		date: '2016-05-02',
+// 		name: 'Tom',
+// 		address: 'No. 189, Grove St, Los Angeles'
+// 	},
+// 	{
+// 		id: 8,
+// 		date: '2016-05-04',
+// 		name: 'Tom',
+// 		address: 'No. 189, Grove St, Los Angeles'
+// 	}
+// ]
 </script>
 <style scoped lang="less">
 .hj-table {
