@@ -12,8 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { onBeforeRouteUpdate } from 'vue-router'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useMenusStore } from '../../../store/menus'
+
+const store = useMenusStore()
+
+store.setMenusList()
 
 withDefaults(
 	defineProps<{
@@ -24,66 +29,16 @@ withDefaults(
 	}
 )
 
-const defaultActive = ref<string>('2-1')
-
-onBeforeRouteUpdate((to) => {
-	const fullPath = to.fullPath
-	const currentPath = fullPath.split('/')[1]
-	defaultActive.value = currentPath
+const menuWrapper = computed(() => {
+	console.log('menuWrapper')
+	return store.getMenusList
 })
 
-const menuWrapper = ref([
-	{
-		index: '1',
-		title: '菜单1',
-		icon: 'Menu',
-		children: []
-	},
-	{
-		index: '2',
-		title: '菜单2',
-		icon: 'Menu',
-		children: [
-			{
-				index: '2-1',
-				title: '菜单2-1',
-				icon: 'Menu',
-				children: []
-			},
-			{
-				index: '2-2',
-				title: '菜单2-2',
-				icon: 'Menu',
-				children: []
-			},
-			{
-				index: '2-3',
-				title: '菜单2-3',
-				icon: 'Menu',
-				children: []
-			}
-		]
-	},
-	{
-		index: '/main/chat',
-		title: 'Chat',
-		icon: 'Menu',
-		children: []
-	},
-	{
-		index: '/main/settings',
-		title: '系统设置',
-		icon: 'Menu',
-		children: [
-			{
-				index: '/main/settings/menus',
-				title: '菜单管理',
-				icon: 'Menu',
-				children: []
-			}
-		]
-	}
-])
+const defaultActive = computed(() => {
+	const route = useRoute()
+	const fullPath = route.fullPath
+	return fullPath
+})
 </script>
 
 <style scoped lang="less">
