@@ -1,12 +1,6 @@
 <template>
 	<div class="hj-table">
-		<el-table
-			:data="tableData"
-			style="width: 100%"
-			lazy
-			default-expand-all
-			row-key="id"
-		>
+		<el-table :data="tableData" style="width: 100%" lazy row-key="id">
 			<el-table-column type="selection" width="55" />
 			<el-table-column prop="date" label="Date" width="180" />
 			<el-table-column prop="name" label="Name" width="180" />
@@ -100,6 +94,9 @@ const tableData: TableData[] = [
 			border-bottom: 2px solid var(--background-color);
 			height: 60px;
 			color: var(--text-title-color);
+			.el-icon {
+				color: var(--text-title-color);
+			}
 			font-weight: 500;
 			.el-checkbox__inner {
 				border-radius: 6px;
