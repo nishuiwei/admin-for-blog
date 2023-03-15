@@ -52,4 +52,7 @@ declare module '@vue/runtime-core' {
 		Src: typeof import('./src/components/page-content/src/index.vue')['default']
 		SunnyIcon: typeof import('./src/components/icon/src/Sunny-icon.vue')['default']
 	}
+	export interface ComponentCustomProperties {
+		vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+	}
 }

@@ -3,7 +3,8 @@ export const contentTableConfig = {
 	propList: [
 		{
 			prop: 'menu_code',
-			label: 'code'
+			label: 'code',
+			width: 200
 		},
 		{
 			prop: 'title',
@@ -25,12 +26,40 @@ export const contentTableConfig = {
 			slotName: 'createdAt'
 		},
 		{
-			prop: 'updatedAt',
-			label: '更新时间',
-			slotName: 'updatedAt'
+			label: '操作',
+			slotName: 'handler',
+			dropList: [
+				{
+					type: 'edit',
+					label: '编辑'
+				},
+				{
+					type: 'delete',
+					label: '删除'
+				},
+				{
+					type: 'detail',
+					label: '详情'
+				}
+			]
 		}
 	],
 	showTreeColumn: true,
 	showIndexColumn: false,
-	showCheckColumn: false
+	showCheckColumn: false,
+	cellStyleFn: ({ columnIndex }: { columnIndex: number }) => {
+		if (columnIndex === 0 || columnIndex === 4) {
+			return {
+				color: 'var(--submenu-color)'
+			}
+		}
+	},
+	headerCellStyleFn: ({ columnIndex }: { columnIndex: number }) => {
+		console.log(columnIndex)
+		if (columnIndex === 0) {
+			return {
+				'padding-left': '20px'
+			}
+		}
+	}
 }

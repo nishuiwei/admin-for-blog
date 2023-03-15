@@ -1,6 +1,13 @@
 <template>
 	<div class="hj-table">
-		<el-table :data="listData" style="width: 100%" lazy :row-key="rowId">
+		<el-table
+			:data="listData"
+			style="width: 100%"
+			lazy
+			:row-key="rowId"
+			:cell-style="cellStyleFn"
+			:header-cell-style="headerCellStyleFn"
+		>
 			<template v-for="propItem in propList" :key="propItem._id">
 				<el-table-column v-bind="propItem">
 					<template #default="scope">
@@ -14,6 +21,8 @@
 	</div>
 </template>
 <script lang="ts" setup>
+type Fn = (item?: any) => any
+
 withDefaults(
 	defineProps<{
 		listData: any[]
@@ -23,72 +32,19 @@ withDefaults(
 		showIndexColumn: boolean
 		showCheckColumn: boolean
 		rowId: string
+		cellStyleFn?: Fn
+		headerCellStyleFn?: Fn
 	}>(),
 	{
-		totalData: 0
+		totalData: 0,
+		cellStyleFn: () => {
+			return {}
+		},
+		headerCellStyleFn: () => {
+			return {}
+		}
 	}
 )
-
-// type TableData = {
-// 	id: number
-// 	date: string
-// 	name: string
-// 	address: string
-// 	children?: TableData[]
-// }
-
-// const tableData: TableData[] = [
-// 	{
-// 		id: 1,
-// 		date: '2016-05-03',
-// 		name: 'Tom',
-// 		address: 'No. 189, Grove St, Los Angeles'
-// 	},
-// 	{
-// 		id: 2,
-// 		date: '2016-05-02',
-// 		name: 'Tom',
-// 		address: 'No. 189, Grove St, Los Angeles'
-// 	},
-// 	{
-// 		id: 3,
-// 		date: '2016-05-04',
-// 		name: 'Tom',
-// 		address: 'No. 189, Grove St, Los Angeles'
-// 	},
-// 	{
-// 		id: 4,
-// 		date: '2016-05-01',
-// 		name: 'Tom',
-// 		address: 'No. 189, Grove St, Los Angeles',
-// 		children: [
-// 			{
-// 				id: 5,
-// 				date: '2016-05-01',
-// 				name: 'wangxiaohu',
-// 				address: 'No. 189, Grove St, Los Angeles'
-// 			},
-// 			{
-// 				id: 6,
-// 				date: '2016-05-01',
-// 				name: 'wangxiaohu',
-// 				address: 'No. 189, Grove St, Los Angeles'
-// 			}
-// 		]
-// 	},
-// 	{
-// 		id: 7,
-// 		date: '2016-05-02',
-// 		name: 'Tom',
-// 		address: 'No. 189, Grove St, Los Angeles'
-// 	},
-// 	{
-// 		id: 8,
-// 		date: '2016-05-04',
-// 		name: 'Tom',
-// 		address: 'No. 189, Grove St, Los Angeles'
-// 	}
-// ]
 </script>
 <style scoped lang="less">
 .hj-table {
