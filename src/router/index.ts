@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] = [
 				component: () => import('~/views/not-found/not-found-page.vue')
 			},
 			{
-				path: '/main/chat',
+				path: 'chat',
 				name: 'chat',
 				component: () => import('~/views/main/chat/chat-page.vue'),
 				meta: {
@@ -31,7 +31,7 @@ const routes: RouteRecordRaw[] = [
 				}
 			},
 			{
-				path: '/main/settings',
+				path: 'settings',
 				name: 'settings',
 				redirect: '/main/settings/menus',
 				meta: {
@@ -40,7 +40,7 @@ const routes: RouteRecordRaw[] = [
 				},
 				children: [
 					{
-						path: '/main/settings/menus',
+						path: 'menus',
 						name: 'settings-menus',
 						component: () =>
 							import('~/views/main/settings/menus/menus-page.vue'),

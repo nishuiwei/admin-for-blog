@@ -11,7 +11,7 @@
 					<el-tag type="success">{{ socpe.row.index }}</el-tag>
 				</template>
 				<template #createdAt="scope">
-					{{ IosDateFormatFn(scope.row.createdAt) }}
+					{{ IosDateFormatFn(scope.row.createdAt).replaceAll('/', '-') }}
 				</template>
 			</page-content>
 		</hj-card>
