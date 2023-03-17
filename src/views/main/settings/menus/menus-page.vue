@@ -14,6 +14,7 @@
 					{{ IosDateFormatFn(scope.row.createdAt).replaceAll('/', '-') }}
 				</template>
 			</page-content>
+			<page-modal />
 		</hj-card>
 	</div>
 </template>
@@ -23,5 +24,6 @@ import PageContent from '../../../../components/page-content'
 import { Icon } from '../../../../components/icon'
 import { contentTableConfig } from './config/content.config'
 import { IosDateFormatFn } from './../../../../utils/IosDateFormat'
+import PageModal from '../../../../components/page-modal/src/page-modal.vue'
 </script>
 <style scoped lang="less"></style>
