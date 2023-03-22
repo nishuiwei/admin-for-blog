@@ -1,6 +1,9 @@
 <template>
 	<div class="settings-menus">
 		<hj-card title="菜单管理">
+			<div class="search">
+				<HJIconButton icon="Plus" shadow @click="handleCreateData" />
+			</div>
 			<page-content
 				page-name="menus"
 				:content-config="contentTableConfig"
@@ -18,7 +21,11 @@
 					{{ IosDateFormatFn(scope.row.createdAt).replaceAll('/', '-') }}
 				</template>
 			</page-content>
-			<page-modal ref="pageModalRef" :modal-config="modalConfig" />
+			<page-modal
+				ref="pageModalRef"
+				:modal-config="modalConfig"
+				:default-info="defaultInfo"
+			/>
 		</hj-card>
 	</div>
 </template>
@@ -31,13 +38,24 @@ import { IosDateFormatFn } from './../../../../utils/IosDateFormat'
 import PageModal from '../../../../components/page-modal/src/page-modal.vue'
 import { modalConfig } from './config/modal.config'
 import { usePageModal } from '../../../../hooks/usePageModal'
+import HJIconButton from '../../../../components/button'
 
-const [pageModalRef, , handleCreateData] = usePageModal()
+const [pageModalRef, defaultInfo, handleCreateData, handleEditData] =
+	usePageModal()
 
 const handleClickOperate = ({ type }: { type: string }, data: any) => {
 	if (type === 'edit') {
-		console.log(data)
-		handleCreateData(data)
+		const item = {
+			menu_code: data.menu_code,
+			title: data.title,
+			index: data.index,
+			icon: data.icon,
+			meta_title: data.meta.title,
+			meta_requires_auth: data.meta.requiresAuth,
+			meta_transition: data.meta.transition,
+			parent_code: data.parent_code
+		}
+		handleEditData(item)
 	}
 }
 </script>

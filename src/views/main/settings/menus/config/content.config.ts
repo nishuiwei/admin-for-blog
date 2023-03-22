@@ -36,10 +36,6 @@ export const contentTableConfig = {
 				{
 					type: 'delete',
 					label: '删除'
-				},
-				{
-					type: 'detail',
-					label: '详情'
 				}
 			]
 		}

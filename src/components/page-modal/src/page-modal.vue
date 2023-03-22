@@ -40,14 +40,16 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import HjForm from '../../../base-ui/form'
+import { setMenuItemRequest } from '../../../service/menus'
 import { Icon } from '../../icon'
 
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		title: string
 		modalConfig: any
+		defaultInfo: object
 	}>(),
 	{
 		title: '添加菜单'
@@ -55,11 +57,27 @@ withDefaults(
 )
 
 const formData = ref<any>({})
-
 const dialogVisible = ref(false)
 
-const handleCreateClick = () => {
-	console.log(formData.value)
+watch(
+	() => props.defaultInfo,
+	(newValue: any) => {
+		for (const item of props.modalConfig.formItems) {
+			formData.value[`${item.field}`] = newValue[`${item.field}`]
+		}
+	},
+	{ deep: true }
+)
+
+// onUpdated(() => {
+// 	defaultInfoRef.value = props.defaultInfo
+// })
+
+const handleCreateClick = async () => {
+	const response = await setMenuItemRequest(formData.value)
+	if (response.success) {
+		dialogVisible.value = false
+	}
 }
 
 const handleCancelClick = () => {

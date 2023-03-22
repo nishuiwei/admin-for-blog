@@ -7,3 +7,9 @@ export const getGlobalListRequest = (url: string, params: any) => {
 		params
 	})
 }
+
+export const removeItemRequest = (url: string) => {
+	return hjRequest.delete({
+		url
+	})
+}

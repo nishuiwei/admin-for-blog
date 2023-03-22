@@ -9,3 +9,10 @@ export const getMenusListRequest = () => {
 		url: MenusAPI.menusList
 	})
 }
+
+export const setMenuItemRequest = (data: any) => {
+	return hjRequest.post({
+		url: MenusAPI.menusList,
+		data
+	})
+}

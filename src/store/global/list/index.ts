@@ -1,5 +1,9 @@
+import { ElMessage } from 'element-plus'
 import { defineStore } from 'pinia'
-import { getGlobalListRequest } from '../../../service/global'
+import {
+	getGlobalListRequest,
+	removeItemRequest
+} from '../../../service/global'
 import { GlobalList } from './type'
 
 export const useGlobalListStore = defineStore('globalList', {
@@ -32,6 +36,19 @@ export const useGlobalListStore = defineStore('globalList', {
 				const self = this as any
 				self[list] = response.data.list
 				self[total] = response.data.total
+			}
+		},
+		async removeGlobalItemData(payload: any) {
+			const { prefix, pageName, url } = payload
+			// console.log(prefix, pageName)
+			const response = await removeItemRequest(url)
+			if (response.success) {
+				ElMessage.success('删除成功')
+				const defaultInfo = {
+					offset: 1,
+					size: 10
+				}
+				this.setGlobalListData({ prefix, pageName, defaultInfo })
 			}
 		}
 	}
