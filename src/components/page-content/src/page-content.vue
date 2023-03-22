@@ -1,8 +1,14 @@
 <template>
 	<div class="page-content">
 		<hj-table :list-data="listData" v-bind="contentConfig">
-			<template #handler>
-				<el-dropdown trigger="click" popper-class="hj-dropdown">
+			<template #handler="scope">
+				<el-dropdown
+					trigger="click"
+					popper-class="hj-dropdown"
+					@command="(item: any) => {
+						handleClickOperate(item, scope.row)
+					} "
+				>
 					<span class="el-dropdown-link">
 						<el-icon :size="20">
 							<Icon icon="More" />
@@ -11,7 +17,9 @@
 					<template #dropdown>
 						<el-dropdown-menu>
 							<template v-for="item in dropList" :key="item.type">
-								<el-dropdown-item>{{ item.label }}</el-dropdown-item>
+								<el-dropdown-item :command="item">
+									{{ item.label }}
+								</el-dropdown-item>
 							</template>
 						</el-dropdown-menu>
 					</template>
@@ -60,8 +68,6 @@ store.setGlobalListData({
 	defaultInfo: props.defaultInfo
 })
 
-console.log(props.contentConfig)
-
 const listData = computed(() => {
 	return store.getGlobalListData(props.pageName)
 })
@@ -70,6 +76,7 @@ const totalData = computed(() => {
 	return store.getGlobalCountData(props.pageName)
 })
 
+// 匹配动态插槽
 const otherPropSlots = props.contentConfig?.propList.filter((item: any) => {
 	if (item.slotName === 'handler') {
 		dropList.value = item.dropList
@@ -79,6 +86,18 @@ const otherPropSlots = props.contentConfig?.propList.filter((item: any) => {
 })
 
 console.log(totalData)
+
+const emits = defineEmits(['click-operate'])
+
+type DropItem = {
+	label: string
+	type: string
+}
+
+// 下拉操作按钮
+const handleClickOperate = (item: DropItem, data: any) => {
+	emits('click-operate', item, data)
+}
 </script>
 <style scoped lang="less">
 .el-dropdown-link {

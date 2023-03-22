@@ -52,7 +52,6 @@ watch(
 	formData.value,
 	(newValue) => {
 		formData.value = newValue
-		console.log(formData)
 		emits('update:modelValue', newValue)
 	},
 	{

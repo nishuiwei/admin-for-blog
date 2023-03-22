@@ -1,7 +1,7 @@
 <template>
 	<div class="hj-dialog">
 		<el-dialog
-			v-model="dialogFormVisible"
+			v-model="dialogVisible"
 			destroy-on-close
 			class="hj-custom-dialog"
 		>
@@ -21,14 +21,14 @@
 					<el-button
 						type="primary"
 						class="confirm-btn"
-						@click="dialogFormVisible = false"
+						@click="handleCreateClick"
 					>
 						<el-icon :size="18">
 							<Icon icon="Select" />
 						</el-icon>
 						create
 					</el-button>
-					<el-button class="cancel-btn" @click="dialogFormVisible = false">
+					<el-button class="cancel-btn" @click="handleCancelClick">
 						<el-icon :size="18">
 							<Icon icon="CloseBold" />
 						</el-icon>
@@ -47,52 +47,31 @@ import { Icon } from '../../icon'
 withDefaults(
 	defineProps<{
 		title: string
+		modalConfig: any
 	}>(),
 	{
 		title: '添加菜单'
 	}
 )
 
-const formData = ref({
-	title: ''
-})
+const formData = ref<any>({})
 
-const modalConfig = {
-	labelWidth: 'auto',
-	gutter: 40,
-	formItems: [
-		{
-			field: 'label',
-			label: '分类名称',
-			type: 'input',
-			rules: [],
-			placeholder: '请输入分类名称',
-			colLayout: {
-				xl: 12,
-				lg: 12,
-				md: 12,
-				sm: 24,
-				xs: 24
-			}
-		},
-		{
-			field: 'description',
-			label: '分类描述',
-			type: 'input',
-			rules: [],
-			placeholder: '请输入分类的描述',
-			colLayout: {
-				xl: 12,
-				lg: 12,
-				md: 12,
-				sm: 24,
-				xs: 24
-			}
-		}
-	]
+const dialogVisible = ref(false)
+
+const handleCreateClick = () => {
+	console.log(formData.value)
 }
 
-const dialogFormVisible = ref(true)
+const handleCancelClick = () => {
+	for (const key in formData) {
+		formData.value[key] = formData[key]
+	}
+	dialogVisible.value = false
+}
+
+defineExpose({
+	dialogVisible
+})
 </script>
 <style scoped lang="less">
 .my-header {
