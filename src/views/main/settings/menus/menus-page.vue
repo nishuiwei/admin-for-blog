@@ -46,6 +46,7 @@ const [pageModalRef, defaultInfo, handleCreateData, handleEditData] =
 const handleClickOperate = ({ type }: { type: string }, data: any) => {
 	if (type === 'edit') {
 		const item = {
+			id: data._id,
 			menu_code: data.menu_code,
 			title: data.title,
 			index: data.index,

@@ -40,16 +40,17 @@
 	</div>
 </template>
 <script lang="ts" setup>
+import { ElMessage } from 'element-plus'
 import { ref, watch } from 'vue'
 import HjForm from '../../../base-ui/form'
-import { setMenuItemRequest } from '../../../service/menus'
+import { setMenuItemRequest, editMenuItemRequest } from '../../../service/menus'
 import { Icon } from '../../icon'
 
 const props = withDefaults(
 	defineProps<{
 		title: string
 		modalConfig: any
-		defaultInfo: object
+		defaultInfo: any
 	}>(),
 	{
 		title: '添加菜单'
@@ -74,9 +75,16 @@ watch(
 // })
 
 const handleCreateClick = async () => {
-	const response = await setMenuItemRequest(formData.value)
+	let response = null
+	if (Object.keys(props.defaultInfo)?.length === 0) {
+		response = await setMenuItemRequest(formData.value)
+	} else {
+		console.log(props.defaultInfo)
+		response = await editMenuItemRequest(props.defaultInfo.id, formData.value)
+	}
 	if (response.success) {
 		dialogVisible.value = false
+		ElMessage.success(response.message)
 	}
 }
 

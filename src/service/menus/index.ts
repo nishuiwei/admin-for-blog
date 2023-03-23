@@ -16,3 +16,10 @@ export const setMenuItemRequest = (data: any) => {
 		data
 	})
 }
+
+export const editMenuItemRequest = (id: string, data: any) => {
+	return hjRequest.patch({
+		url: MenusAPI.menusList + '/' + id,
+		data
+	})
+}
