@@ -31,6 +31,15 @@ const routes: RouteRecordRaw[] = [
 				}
 			},
 			{
+				path: 'todo-list',
+				name: 'todo-list',
+				component: () => import('~/views/main/todo-list/todo-list-page.vue'),
+				meta: {
+					auth: true,
+					title: '任务列表'
+				}
+			},
+			{
 				path: 'settings',
 				name: 'settings',
 				redirect: '/main/settings/menus',

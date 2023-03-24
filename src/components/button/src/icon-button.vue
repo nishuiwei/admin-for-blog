@@ -1,8 +1,14 @@
 <template>
-	<el-button class="button" :disabled="!disabled" :class="{ shadow: shadow }">
-		<el-icon :size="size">
+	<el-button
+		class="button"
+		:style="btnStyle"
+		:disabled="!disabled"
+		:class="{ shadow: shadow }"
+	>
+		<el-icon v-if="icon" :size="size">
 			<Icon :icon="icon" />
 		</el-icon>
+		<slot />
 	</el-button>
 </template>
 
@@ -15,11 +21,16 @@ withDefaults(
 		icon: string
 		shadow?: boolean
 		size?: number
+		btnStyle?: any
 	}>(),
 	{
 		disabled: true,
 		icon: 'Plus',
-		size: 14
+		size: 14,
+		btnStyle: {
+			width: '40px',
+			height: '40px'
+		}
 	}
 )
 </script>
@@ -29,8 +40,10 @@ withDefaults(
 	background: var(--send-btn-bg);
 	border: none;
 	color: #fff;
-	width: 40px;
-	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	// font-family: 'Po';
 	&:disabled {
 		opacity: 0.6;
 		color: #ccc;

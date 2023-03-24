@@ -6,6 +6,10 @@ body,
 	font-weight: 400;
 }
 
+* {
+	font-family: 'Poppins';
+}
+
 :root {
 	color-scheme: light;
 	--background-color: rgba(219, 231, 238, 100);
