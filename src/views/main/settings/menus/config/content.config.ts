@@ -40,7 +40,6 @@ export const contentTableConfig = {
 			]
 		}
 	],
-	showTreeColumn: true,
 	showIndexColumn: false,
 	showCheckColumn: false,
 	cellStyleFn: ({ columnIndex }: { columnIndex: number }) => {

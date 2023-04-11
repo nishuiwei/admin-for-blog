@@ -50,3 +50,36 @@ body,
 .bg-transition {
 	transition: all 0.3s ease-in-out;
 }
+
+.el-tag {
+	font-weight: 700;
+	font-size: 13px;
+	border-width: 2px;
+	border-radius: 6px;
+	margin: 0 5px;
+	border-color: rgba(34, 204, 226, 0.15);
+	color: rgba(34, 204, 226, 1);
+	background-color: transparent;
+	&:first-child {
+		margin-left: 0;
+	}
+	&:last-child {
+		margin-right: 0;
+	}
+	&.el-tag--success {
+		border-color: rgba(9, 182, 109, 0.15);
+		color: #09b66d;
+	}
+	&.el-tag--danger {
+		border-color: rgba(255, 61, 81, 0.15);
+		color: rgba(255, 61, 81, 1);
+	}
+	&.el-tag--warning {
+		border-color: rgba(255, 138, 72, 0.15);
+		color: rgba(255, 138, 72, 1);
+	}
+	&.el-tag--info {
+		border-color: rgba(130, 145, 169, 0.15);
+		color: rgba(130, 145, 169, 1);
+	}
+}

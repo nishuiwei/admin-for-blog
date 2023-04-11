@@ -8,6 +8,10 @@
 			:cell-style="cellStyleFn"
 			:header-cell-style="headerCellStyleFn"
 		>
+			<el-table-column v-if="showSortColumn" width="45">
+				<div class="sort-icon">:::</div>
+			</el-table-column>
+			<el-table-column v-if="showCheckColumn" type="selection" width="55" />
 			<template v-for="propItem in propList" :key="propItem._id">
 				<el-table-column v-bind="propItem">
 					<template #default="scope">
@@ -21,16 +25,20 @@
 	</div>
 </template>
 <script lang="ts" setup>
+import { onMounted, nextTick } from 'vue'
+import Sortable from 'sortablejs'
+import type { Options } from 'sortablejs'
+
 type Fn = (item?: any) => any
 
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		listData: any[]
 		totalData?: number
 		propList: any
-		showTreeColumn: boolean
 		showIndexColumn: boolean
 		showCheckColumn: boolean
+		showSortColumn: boolean
 		rowId: string
 		cellStyleFn?: Fn
 		headerCellStyleFn?: Fn
@@ -45,6 +53,41 @@ withDefaults(
 		}
 	}
 )
+
+const initSort = () => {
+	if (!props.showSortColumn) return
+	const tbody = document.querySelector(
+		'.el-table .el-table__body-wrapper .el-table__body tbody'
+	) as HTMLElement
+	console.log(tbody)
+	const opts: Options = {
+		group: {
+			name: 'table',
+			pull: false,
+			put: false
+		},
+		invertSwap: true,
+		handle: '.sort-icon',
+		direction: 'horizontal',
+		draggable: '.el-table .el-table__row',
+		touchStartThreshold: 3,
+		chosenClass: 'chosen',
+		forceFallback: true,
+		dataIdAttr: 'data-id',
+		onEnd: async function (evt: any) {
+			if (evt.oldIndex !== evt.newIndex) {
+				console.log('排序了')
+			}
+		}
+	}
+	Sortable.create(tbody, opts)
+}
+
+onMounted(() => {
+	nextTick(() => {
+		initSort()
+	})
+})
 </script>
 <style scoped lang="less">
 .hj-table {
@@ -103,5 +146,17 @@ withDefaults(
 			}
 		}
 	}
+}
+
+.sort-icon {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	transform: rotate(90deg);
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: bold;
+	color: var(--submenu-color);
+	text-align: center;
 }
 </style>

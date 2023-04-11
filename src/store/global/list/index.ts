@@ -9,7 +9,9 @@ import { GlobalList } from './type'
 export const useGlobalListStore = defineStore('globalList', {
 	state: (): GlobalList => ({
 		menusList: [],
-		menusTotal: 0
+		menusTotal: 0,
+		todosList: [],
+		todosTotal: 0
 	}),
 	getters: {
 		getGlobalListData(state) {

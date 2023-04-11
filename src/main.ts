@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router/index'
 import './assets/style/reset.less'
 import './assets/style/fonts.less'
-import './style.css'
+import './style.less'
 import 'element-plus/theme-chalk/src/message.scss'
 import 'element-plus/theme-chalk/src/message-box.scss'
 
