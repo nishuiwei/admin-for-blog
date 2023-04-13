@@ -54,9 +54,7 @@ const isDisabled = computed(() => {
 
 const handleClickSignIN = async () => {
 	const payload = loginForm.value
-	console.log('登陆 ===> ', payload)
 	const response = await loginRequest(payload)
-	console.log(response)
 	if (response.code === 200) {
 		LocalCache.setCache('token', response.data.token)
 		LocalCache.setCache('user', response.data)

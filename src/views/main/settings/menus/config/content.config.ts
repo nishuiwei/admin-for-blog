@@ -50,7 +50,6 @@ export const contentTableConfig = {
 		}
 	},
 	headerCellStyleFn: ({ columnIndex }: { columnIndex: number }) => {
-		console.log(columnIndex)
 		if (columnIndex === 0) {
 			return {
 				'padding-left': '20px'

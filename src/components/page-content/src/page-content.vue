@@ -73,9 +73,9 @@ const listData = computed(() => {
 	return store.getGlobalListData(props.pageName)
 })
 
-const totalData = computed(() => {
-	return store.getGlobalCountData(props.pageName)
-})
+// const totalData = computed(() => {
+// 	return store.getGlobalCountData(props.pageName)
+// })
 
 // 匹配动态插槽
 const otherPropSlots = props.contentConfig?.propList.filter((item: any) => {
@@ -85,8 +85,6 @@ const otherPropSlots = props.contentConfig?.propList.filter((item: any) => {
 	}
 	return true
 })
-
-console.log(totalData)
 
 const emits = defineEmits(['click-operate'])
 

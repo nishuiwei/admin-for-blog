@@ -42,7 +42,6 @@ export const useGlobalListStore = defineStore('globalList', {
 		},
 		async removeGlobalItemData(payload: any) {
 			const { prefix, pageName, url } = payload
-			// console.log(prefix, pageName)
 			const response = await removeItemRequest(url)
 			if (response.success) {
 				ElMessage.success('删除成功')

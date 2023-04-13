@@ -30,7 +30,6 @@ withDefaults(
 )
 
 const menuWrapper = computed(() => {
-	console.log('menuWrapper')
 	return store.getMenusList
 })
 

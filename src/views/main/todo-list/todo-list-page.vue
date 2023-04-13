@@ -48,6 +48,7 @@
 								<el-icon
 									:size="26"
 									:style="{ color: socpe.row.is_star ? '#FDBF5E' : '#8291A9' }"
+									@click="handleClickStar(socpe.row)"
 								>
 									<Icon icon="StarFilled" />
 								</el-icon>
@@ -59,6 +60,7 @@
 					ref="pageModalRef"
 					:modal-config="modalConfig"
 					:default-info="defaultInfo"
+					type="todos"
 				/>
 			</hj-card>
 		</div>
@@ -73,13 +75,28 @@ import { modalConfig } from './config/modal.config'
 import { Icon } from '../../../components/icon'
 import PageModal from '../../../components/page-modal'
 import { usePageModal } from '../../../hooks/usePageModal'
+import { starTodoItemRequest } from './../../../service/todolist'
+import { ElMessage } from 'element-plus'
 
 const handleClickOperate = ({ type }: { type: string }, data: any) => {
 	if (type === 'edit') {
-		console.log(data)
-		handleEditData(data)
+		const item = {
+			id: data._id,
+			title: data.title,
+			label_type: data.label_type.map((item: any) => item.title),
+			notes: data.notes
+		}
+		handleEditData(item)
 	}
-	// console.log(123)
+}
+
+const handleClickStar = async (item: any) => {
+	const response = await starTodoItemRequest(item._id, {
+		is_star: !item.is_star
+	})
+	if (response.success) {
+		ElMessage.success('操作成功')
+	}
 }
 
 const [pageModalRef, defaultInfo, handleCreateData, handleEditData] =

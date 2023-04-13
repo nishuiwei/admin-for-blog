@@ -44,6 +44,10 @@ import { ElMessage } from 'element-plus'
 import { ref, watch } from 'vue'
 import HjForm from '../../../base-ui/form'
 import { setMenuItemRequest, editMenuItemRequest } from '../../../service/menus'
+import {
+	setTodoItemRequest,
+	editTodoItemRequest
+} from '../../../service/todolist'
 import { Icon } from '../../icon'
 
 const props = withDefaults(
@@ -51,6 +55,7 @@ const props = withDefaults(
 		title: string
 		modalConfig: any
 		defaultInfo: any
+		type: string
 	}>(),
 	{
 		title: '添加菜单'
@@ -74,13 +79,36 @@ watch(
 // 	defaultInfoRef.value = props.defaultInfo
 // })
 
+const createApiMap = (type: string) => {
+	switch (type) {
+		case 'menus':
+			return setMenuItemRequest(formData.value)
+		case 'todos':
+			return setTodoItemRequest(formData.value)
+		default:
+			break
+	}
+}
+
+const editApiMap = (type: string) => {
+	switch (type) {
+		case 'menus':
+			return editMenuItemRequest(props.defaultInfo.id, formData.value)
+		case 'todos':
+			return editTodoItemRequest(props.defaultInfo.id, formData.value)
+		default:
+			break
+	}
+}
+
 const handleCreateClick = async () => {
 	let response = null
 	if (Object.keys(props.defaultInfo)?.length === 0) {
-		response = await setMenuItemRequest(formData.value)
+		const requestData = createApiMap(props.type)
+		response = await requestData
 	} else {
-		console.log(props.defaultInfo)
-		response = await editMenuItemRequest(props.defaultInfo.id, formData.value)
+		const requestData = editApiMap(props.type)
+		response = await requestData
 	}
 	if (response.success) {
 		dialogVisible.value = false

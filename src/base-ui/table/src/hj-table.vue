@@ -59,7 +59,6 @@ const initSort = () => {
 	const tbody = document.querySelector(
 		'.el-table .el-table__body-wrapper .el-table__body tbody'
 	) as HTMLElement
-	console.log(tbody)
 	const opts: Options = {
 		group: {
 			name: 'table',
