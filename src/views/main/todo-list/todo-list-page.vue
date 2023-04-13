@@ -58,6 +58,7 @@
 				</page-content>
 				<page-modal
 					ref="pageModalRef"
+					page-name="todos"
 					:modal-config="modalConfig"
 					:default-info="defaultInfo"
 					type="todos"
@@ -77,6 +78,7 @@ import PageModal from '../../../components/page-modal'
 import { usePageModal } from '../../../hooks/usePageModal'
 import { starTodoItemRequest } from './../../../service/todolist'
 import { ElMessage } from 'element-plus'
+import { useGlobalListStore } from '../../../store/global/list'
 
 const handleClickOperate = ({ type }: { type: string }, data: any) => {
 	if (type === 'edit') {
@@ -95,6 +97,10 @@ const handleClickStar = async (item: any) => {
 		is_star: !item.is_star
 	})
 	if (response.success) {
+		const store = useGlobalListStore()
+		store.setGlobalListData({
+			pageName: 'todos'
+		})
 		ElMessage.success('操作成功')
 	}
 }

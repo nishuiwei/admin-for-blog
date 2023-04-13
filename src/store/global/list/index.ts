@@ -28,7 +28,8 @@ export const useGlobalListStore = defineStore('globalList', {
 	actions: {
 		// TODO...
 		async setGlobalListData(payload: any) {
-			const { prefix, pageName, defaultInfo } = payload
+			const { prefix = '', pageName, defaultInfo = {} } = payload
+			console.log(prefix, pageName)
 			const url = `${prefix}/${pageName}`
 			const list = `${pageName}List`
 			const total = `${pageName}Total`

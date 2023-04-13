@@ -48,6 +48,7 @@ import {
 	setTodoItemRequest,
 	editTodoItemRequest
 } from '../../../service/todolist'
+import { useGlobalListStore } from '../../../store/global/list'
 import { Icon } from '../../icon'
 
 const props = withDefaults(
@@ -56,9 +57,12 @@ const props = withDefaults(
 		modalConfig: any
 		defaultInfo: any
 		type: string
+		prefix: string
+		pageName: string
 	}>(),
 	{
-		title: '添加菜单'
+		title: '添加菜单',
+		prefix: ''
 	}
 )
 
@@ -101,6 +105,8 @@ const editApiMap = (type: string) => {
 	}
 }
 
+const store = useGlobalListStore()
+
 const handleCreateClick = async () => {
 	let response = null
 	if (Object.keys(props.defaultInfo)?.length === 0) {
@@ -112,6 +118,10 @@ const handleCreateClick = async () => {
 	}
 	if (response.success) {
 		dialogVisible.value = false
+		store.setGlobalListData({
+			prefix: props.prefix,
+			pageName: props.pageName
+		})
 		ElMessage.success(response.message)
 	}
 }

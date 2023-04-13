@@ -23,6 +23,8 @@
 			</page-content>
 			<page-modal
 				ref="pageModalRef"
+				type="menus"
+				page-name="menus"
 				:modal-config="modalConfig"
 				:default-info="defaultInfo"
 			/>
