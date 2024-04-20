@@ -18,8 +18,6 @@ import { useMenusStore } from '../../../store/menus'
 
 const store = useMenusStore()
 
-store.setMenusList()
-
 withDefaults(
 	defineProps<{
 		isCollapse: boolean

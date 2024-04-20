@@ -13,7 +13,7 @@
 				</el-icon>
 			</div>
 			<div class="header-user-setting">
-				<el-dropdown>
+				<el-dropdown @command="handleClickDropdown">
 					<span class="el-dropdown-link">
 						<el-badge is-dot class="item" type="success">
 							<el-avatar
@@ -25,9 +25,13 @@
 					</span>
 					<template #dropdown>
 						<el-dropdown-menu>
-							<el-dropdown-item>Action 1</el-dropdown-item>
-							<el-dropdown-item>Action 2</el-dropdown-item>
-							<el-dropdown-item>Action 3</el-dropdown-item>
+							<el-dropdown-item
+								:command="{
+									type: 'logout'
+								}"
+							>
+								退出登陆
+							</el-dropdown-item>
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
@@ -39,6 +43,7 @@
 <script setup lang="ts">
 import { Icon } from '../../icon'
 import { useTheme } from '../../../composables'
+import LocalCache from '~/utils/cache'
 
 const props = withDefaults(
 	defineProps<{
@@ -55,6 +60,18 @@ const emits = defineEmits(['clickCollapse'])
 
 const handleClickCollapse = (): void => {
 	emits('clickCollapse', !props.isCollapse)
+}
+
+type TDorpdown = {
+	type: string
+}
+
+const handleClickDropdown = (item: TDorpdown): void => {
+	const { type } = item
+	if (type === 'logout') {
+		LocalCache.clearCache()
+		window.location.href = '/login'
+	}
 }
 </script>
 

@@ -15,7 +15,7 @@ export const modalConfig = {
 				sm: 24,
 				xs: 24
 			},
-			disabled: true
+			disabled: false
 		},
 		{
 			field: 'menu_code',

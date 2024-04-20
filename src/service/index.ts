@@ -26,9 +26,14 @@ const hjRequest = new HJRequest({
 			const { data, status } = response
 			switch (status) {
 				case 404:
-					ElMessage.error(data.message)
+					ElMessage.error('找不到该API，请联系管理员')
 					break
-
+				case 401:
+					ElMessage.error(data.message)
+					setTimeout(() => {
+						window.location.href = '/login'
+					}, 500)
+					break
 				default:
 					return err
 			}

@@ -40,9 +40,10 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { loginRequest } from './../../service/login'
 import LocalCache from './../../utils/cache'
+import { useMenusStore } from '../../store/menus'
 
 const router = useRouter()
-
+const store = useMenusStore()
 const loginForm = ref({
 	email: '',
 	password: ''
@@ -53,12 +54,14 @@ const isDisabled = computed(() => {
 })
 
 const handleClickSignIN = async () => {
+	LocalCache.clearCache()
 	const payload = loginForm.value
 	const response = await loginRequest(payload)
 	if (response.code === 200) {
 		LocalCache.setCache('token', response.data.token)
 		LocalCache.setCache('user', response.data)
 		router.push('/main')
+		store.setMenusList()
 	}
 }
 </script>

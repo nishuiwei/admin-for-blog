@@ -31,6 +31,15 @@ const routes: RouteRecordRaw[] = [
 				}
 			},
 			{
+				path: 'email',
+				name: 'email',
+				component: () => import('~/views/main/email/email-page.vue'),
+				meta: {
+					auth: true,
+					title: '邮箱'
+				}
+			},
+			{
 				path: 'todo-list',
 				name: 'todo-list',
 				component: () => import('~/views/main/todo-list/todo-list-page.vue'),
@@ -56,6 +65,16 @@ const routes: RouteRecordRaw[] = [
 						meta: {
 							auth: true,
 							title: '菜单设定'
+						}
+					},
+					{
+						path: 'email',
+						name: 'settings-email',
+						component: () =>
+							import('~/views/main/settings/email/email-page.vue'),
+						meta: {
+							auth: true,
+							title: '邮箱配置'
 						}
 					}
 				]

@@ -26,10 +26,14 @@
 										v-for="option in item.options"
 										:key="option"
 										:label="option.label"
-										:value="option.label"
+										:value="option.value"
 									>
 										<template #default>
-											<el-tag :type="option.type" effect="plain">
+											<el-tag
+												v-if="option.type"
+												:type="option.type"
+												effect="plain"
+											>
 												{{ option.label }}
 											</el-tag>
 										</template>
@@ -136,6 +140,9 @@ watch(
 		&.is-focus {
 			box-shadow: none;
 		}
+	}
+	.el-select {
+		width: 100%;
 	}
 }
 </style>

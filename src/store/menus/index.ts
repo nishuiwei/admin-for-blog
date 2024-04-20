@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { getMenusListRequest } from '../../service/menus'
 import { MenusStore } from './type'
-
+import LocalCache from './../../utils/cache'
 export const useMenusStore = defineStore('menus', {
 	state: (): MenusStore => {
 		return {
@@ -10,7 +10,9 @@ export const useMenusStore = defineStore('menus', {
 	},
 	getters: {
 		getMenusList(state) {
-			return state.list
+			const menus = LocalCache.getCache('menus')
+			if (!menus) return state.list
+			return JSON.parse(menus)
 		}
 	},
 	actions: {
@@ -19,6 +21,7 @@ export const useMenusStore = defineStore('menus', {
 			const response = await getMenusListRequest()
 			if (response.success) {
 				this.list = response.data.list
+				LocalCache.setCache('menus', JSON.stringify(response.data.list))
 			}
 		}
 	}

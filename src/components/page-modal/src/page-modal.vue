@@ -48,6 +48,7 @@ import {
 	setTodoItemRequest,
 	editTodoItemRequest
 } from '../../../service/todolist'
+import { setEmailItemRequest } from '~/service/email'
 import { useGlobalListStore } from '../../../store/global/list'
 import { Icon } from '../../icon'
 
@@ -89,6 +90,8 @@ const createApiMap = (type: string) => {
 			return setMenuItemRequest(formData.value)
 		case 'todos':
 			return setTodoItemRequest(formData.value)
+		case 'email':
+			return setEmailItemRequest(formData.value)
 		default:
 			break
 	}
@@ -118,11 +121,13 @@ const handleCreateClick = async () => {
 	}
 	if (response.success) {
 		dialogVisible.value = false
-		store.setGlobalListData({
-			prefix: props.prefix,
-			pageName: props.pageName
-		})
 		ElMessage.success(response.message)
+		if (props.pageName !== 'email') {
+			store.setGlobalListData({
+				prefix: props.prefix,
+				pageName: props.pageName
+			})
+		}
 	}
 }
 

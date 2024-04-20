@@ -28,7 +28,7 @@ withDefaults(
 		icon: 'Plus',
 		size: 14,
 		btnStyle: {
-			width: '40px',
+			width: 'max-content',
 			height: '40px'
 		}
 	}
