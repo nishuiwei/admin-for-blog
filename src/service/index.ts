@@ -7,6 +7,7 @@ import { ElMessage } from 'element-plus'
 const hjRequest = new HJRequest({
 	baseURL: BASE_URL,
 	timeout: TIME_OUT,
+	withCredentials: true,
 	interceptors: {
 		requestInterceptors: (config) => {
 			const token = localCache.getCache('token')

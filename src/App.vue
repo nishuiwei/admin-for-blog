@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+document.cookie = 'name=123456;'
+</script>
 
 <template>
 	<router-view v-slot="{ Component }">
